@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>खाण्डल विप्र परिवार रजिस्टर</title>
+<meta name="description" content="अखिल भारतवर्षीय श्री खाण्डल विप्र महासभा, युवा समिति MBVV — समाज परिवार रजिस्टर। फ़ॉर्म भरें, परिवार देखें।">
+<meta property="og:title" content="खाण्डल विप्र परिवार रजिस्टर">
+<meta property="og:description" content="युवा समिति MBVV — अपने परिवार की जानकारी भरें">
+<meta property="og:image" content="icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#6c0f28">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="खाण्डल परिवार">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script>window.KVP_PWA=true;window.__bip=null;addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__bip=e;});</script>
+<script src="config.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+<style>
+/* Layout: maroon toran band with the Parshuram medallion, sticky tabs, one centred column for the 3-step form, a card grid for the directory, bottom sheet for person/family views */
+:root{
+  --bg:#fffaee; --surface:#ffffff; --surface-2:#fdf0d5; --ink:#2b1519; --ink-2:#6d5054; --line:#ecdcc0;
+  --accent:#8e1b36; --accent-bg:#8e1b36; --on-accent:#fff7e8; --accent-line:#8e1b3666; --focus-ring:#8e1b3626;
+  --gold:#a86f0c; --gold-bg:#f8e6b8; --gold-ink:#5a3a00;
+  --band-1:#6c0f28; --band-2:#9a2141; --band-gold:#f2c35b; --band-text:#fff3dc;
+  --ok:#1f6b45; --ok-bg:#e2f2e8; --err:#b42318; --err-bg:#fde8e6; --scrim:#2b151980;
+  --shadow:0 1px 2px #50201410, 0 8px 24px #50201412;
+  --f-display:"Rozha One","Noto Serif Devanagari","Tiro Devanagari Hindi",serif;
+  --f-body:"Mukta","Noto Sans Devanagari","Nirmala UI","Mangal",system-ui,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#170d10; --surface:#22151a; --surface-2:#2c1b21; --ink:#f7ebdb; --ink-2:#c6ada4; --line:#3d2a31;
+  --accent:#f291a6; --accent-bg:#b02a4c; --on-accent:#fff5f0; --accent-line:#f291a666; --focus-ring:#f291a633;
+  --gold:#e9bb5f; --gold-bg:#3a2a12; --gold-ink:#f6d793;
+  --band-1:#3e0817; --band-2:#66132c; --band-gold:#e9bb5f; --band-text:#fbe9d3;
+  --ok:#74d6a0; --ok-bg:#15301f; --err:#ff9187; --err-bg:#3a1714; --scrim:#000000a8;
+  --shadow:0 1px 2px #00000050, 0 10px 28px #00000060; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#170d10; --surface:#22151a; --surface-2:#2c1b21; --ink:#f7ebdb; --ink-2:#c6ada4; --line:#3d2a31;
+  --accent:#f291a6; --accent-bg:#b02a4c; --on-accent:#fff5f0; --accent-line:#f291a666; --focus-ring:#f291a633;
+  --gold:#e9bb5f; --gold-bg:#3a2a12; --gold-ink:#f6d793;
+  --band-1:#3e0817; --band-2:#66132c; --band-gold:#e9bb5f; --band-text:#fbe9d3;
+  --ok:#74d6a0; --ok-bg:#15301f; --err:#ff9187; --err-bg:#3a1714; --scrim:#000000a8;
+  --shadow:0 1px 2px #00000050, 0 10px 28px #00000060; color-scheme:dark }
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--f-body)}
+body.noscroll{overflow:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h2,h3{text-wrap:balance}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* ---------- Band ---------- */
+.band{position:relative;background:linear-gradient(180deg,var(--band-1),var(--band-2));color:var(--band-text);border-bottom:3px solid var(--band-gold)}
+.band::after{content:"";position:absolute;left:0;right:0;top:100%;height:9px;background:radial-gradient(circle at 50% 0,var(--band-gold) 4.5px,transparent 5px) 0 0/18px 9px repeat-x}
+.band-in{max-width:1040px;margin:0 auto;padding-block:18px 20px;display:flex;align-items:center;gap:18px}
+.medal{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:50% 25%;border:3px solid var(--band-gold);box-shadow:0 0 0 5px #f2c35b2e;flex:none;background:#fff3d6}
+.band-text{min-width:0}
+.mantra{margin:0;color:var(--band-gold);font-size:14.5px;letter-spacing:.05em;font-weight:600}
+.band h1{margin:2px 0 4px;font:400 clamp(21px,4.4vw,34px)/1.22 var(--f-display);text-wrap:balance}
+.band .sub{margin:0;font-size:15.5px;font-weight:500;color:var(--band-text)}
+.band .sub b{color:var(--band-gold);font-weight:600}
+@media (max-width:480px){.medal{width:66px;height:66px}.band-in{gap:12px;padding-block:14px 16px}.band .sub{font-size:14px}}
+
+.demo{background:var(--gold-bg);color:var(--gold-ink);font-size:14.5px;margin-top:14px}
+.demo-in{max-width:1040px;margin:0 auto;padding-block:10px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.demo-in p{margin:0;flex:1 1 320px}
+.demo-in b{font-weight:700}
+
+/* ---------- Tabs ---------- */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);margin-top:14px}
+.tabs-in{max-width:1040px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab{appearance:none;border:0;background:none;font:600 16px/1 var(--f-body);color:var(--ink-2);padding:15px 14px 12px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;display:inline-flex;gap:8px;align-items:center}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent-bg)}
+.pill{font:600 12.5px/1 var(--f-body);background:var(--surface-2);color:var(--ink-2);padding:4px 8px;border-radius:999px;font-variant-numeric:tabular-nums}
+
+main .wrap{max-width:760px;margin:0 auto;padding-block:22px 56px}
+main .wrap.wide{max-width:1040px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px}
+@media (min-width:640px){.card{padding:28px 30px}}
+
+/* ---------- Form ---------- */
+.formhead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;margin-bottom:14px}
+.formhead h2{margin:0;font:400 28px/1.2 var(--f-display);color:var(--accent)}
+.formhead p{margin:0;color:var(--ink-2);font-size:15px}
+.editbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;background:var(--gold-bg);color:var(--gold-ink);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-weight:500}
+.stepper{list-style:none;margin:0 0 20px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stepper li{display:flex;flex-direction:column;gap:7px;font-size:14.5px;color:var(--ink-2);font-weight:500;min-width:0}
+.stepper li::before{content:"";height:5px;border-radius:3px;background:var(--line)}
+.stepper li.on::before,.stepper li.done::before{background:var(--accent-bg)}
+.stepper li.on{color:var(--ink);font-weight:700}
+.stepper .n{color:var(--gold);font-weight:700;margin-right:3px;font-variant-numeric:tabular-nums}
+.step{border:0;margin:0;padding:0;min-width:0}
+.step-body{display:grid;gap:20px}
+.step h3{margin:0 0 2px;font:600 20px/1.3 var(--f-body)}
+.step h3 small{display:block;font-weight:400;font-size:14.5px;color:var(--ink-2);margin-top:2px}
+.grid2{display:grid;gap:20px;grid-template-columns:1fr}
+@media (min-width:640px){.grid2{grid-template-columns:1fr 1fr}}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+label,.lbl{font-weight:600;font-size:16px;color:var(--ink)}
+.en{font-weight:400;color:var(--ink-2);font-size:13.5px;margin-left:3px}
+.req{color:var(--err);font-weight:700;margin-left:2px}
+input[type=text],input[type=tel],input[type=email],input[type=date],input[type=number],input[type=password],input[type=search],select,textarea{
+  font:400 17px/1.4 var(--f-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;min-height:50px;width:100%;min-width:0}
+textarea{min-height:88px;resize:vertical}
+input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 4px var(--focus-ring)}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:var(--err)}
+.err{margin:0;color:var(--err);font-size:14.5px;font-weight:500}
+.err:empty{display:none}
+.hint{margin:0;color:var(--ink-2);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;display:inline-flex}
+.chip input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%}
+.chip span{display:inline-flex;align-items:center;gap:6px;min-height:46px;padding:9px 17px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);font-weight:500;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.chip span small{color:var(--ink-2);font-size:12.5px;font-weight:400}
+.chip:hover span{border-color:var(--accent-line)}
+.chip input:checked + span{background:var(--accent-bg);border-color:var(--accent-bg);color:var(--on-accent)}
+.chip input:checked + span small{color:var(--on-accent)}
+.chip input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
+.check{display:inline-flex;gap:9px;align-items:center;font-weight:500;font-size:15px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--accent-bg);margin:0}
+.acwrap{position:relative}
+.sugg{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:15;background:var(--surface);border:1.5px solid var(--accent-line);border-radius:12px;box-shadow:var(--shadow);max-height:310px;overflow-y:auto;padding:6px}
+.sugg-h{margin:4px 8px 6px;font-size:13px;color:var(--ink-2)}
+.sugg button{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;text-align:left;border:0;background:none;padding:9px 10px;border-radius:8px;cursor:pointer;color:var(--ink);font-size:16px}
+.sugg button:hover,.sugg button:focus-visible{background:var(--surface-2)}
+.sugg button span{font-size:13.5px;color:var(--ink-2)}
+.linked{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--ok-bg);color:var(--ok);border-radius:9px;padding:8px 12px;font-size:14.5px}
+.linked button{border:0;background:none;color:inherit;font:600 14px/1 var(--f-body);text-decoration:underline;cursor:pointer;padding:4px}
+.subpanel{display:grid;gap:18px;padding:16px;border-radius:12px;background:var(--surface-2)}
+.mrows{display:grid;gap:10px}
+.mrow{display:grid;grid-template-columns:1fr 170px auto;gap:8px;align-items:center}
+.mrow .x{width:44px;height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink-2);font-size:20px;line-height:1;cursor:pointer}
+.mrow .x:hover{color:var(--err);border-color:var(--err)}
+@media (max-width:540px){.mrow{grid-template-columns:1fr auto}.mrow input{grid-column:1 / -1}}
+.btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 20px;border-radius:10px;border:1.5px solid transparent;font:600 16.5px/1.2 var(--f-body);cursor:pointer;text-decoration:none;text-align:center}
+.btn.primary{background:var(--accent-bg);color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(1.1)}
+.btn.ghost{background:var(--surface);color:var(--accent);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--accent-line)}
+.btn.gold{background:var(--gold-bg);color:var(--gold-ink)}
+.btn.danger{background:var(--err-bg);color:var(--err)}
+.btn.sm{min-height:38px;padding:6px 13px;font-size:14.5px;border-radius:9px}
+.btn[disabled]{opacity:.6;cursor:progress}
+.linkbtn{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:600;cursor:pointer;text-align:left;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:var(--accent-line)}
+.linkbtn:hover{text-decoration-color:var(--accent)}
+.formnav{display:flex;gap:12px;margin-top:26px;padding-top:20px;border-top:1px dashed var(--line)}
+.formnav .fwd{margin-left:auto}
+.formmsg{margin:14px 0 0;padding:10px 14px;border-radius:10px;background:var(--err-bg);color:var(--err);font-weight:500}
+.formmsg:empty{display:none}
+.draftnote{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:14.5px;color:var(--ink-2);margin:-4px 0 14px}
+.review{display:grid;gap:14px;padding:16px;border:1.5px dashed var(--line);border-radius:12px}
+.review h4{margin:0;font-size:15px;color:var(--gold);letter-spacing:.02em}
+.kv{display:grid;grid-template-columns:minmax(110px,36%) 1fr;gap:7px 14px;margin:0}
+.kv dt{color:var(--ink-2);font-size:14.5px}
+.kv dd{margin:0;font-weight:500;overflow-wrap:anywhere;min-width:0}
+
+/* done */
+.done{text-align:center;display:grid;gap:14px;justify-items:center}
+.seal{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:var(--gold-bg);color:var(--gold-ink);border:3px solid var(--band-gold);font-size:36px}
+.done h2{margin:0;font:400 30px/1.2 var(--f-display);color:var(--accent)}
+.done p{margin:0;max-width:52ch;color:var(--ink-2)}
+.codebox{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;padding:14px 18px;border-radius:12px;background:var(--surface-2);border:1.5px dashed var(--band-gold)}
+.codebox span{color:var(--ink-2);font-size:14.5px}
+.codebox strong{font:700 28px/1 ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;letter-spacing:.14em;color:var(--ink)}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+
+/* ---------- Directory ---------- */
+.dirhead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin-bottom:14px}
+.dirhead h2{margin:0;font:400 28px/1.2 var(--f-display);color:var(--accent)}
+.dirhead p{margin:0;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.tools .search{flex:1 1 280px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:none;padding:10px 14px;font:600 15px/1 var(--f-body);color:var(--ink-2);cursor:pointer;min-height:46px}
+.seg button[aria-pressed="true"]{background:var(--accent-bg);color:var(--on-accent)}
+.cityf{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.cityf .chip span{min-height:38px;padding:6px 14px;font-size:15px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;min-width:0;align-content:start}
+.ava{grid-row:span 3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);color:var(--accent);font:400 21px/1 var(--f-display);border:1.5px solid var(--band-gold)}
+.pcard .pname{appearance:none;border:0;background:none;padding:0;text-align:left;font:600 18px/1.3 var(--f-body);color:var(--ink);cursor:pointer;overflow-wrap:anywhere}
+.pcard .pname:hover{color:var(--accent)}
+.pcard .meta{font-size:14px;color:var(--ink-2);overflow-wrap:anywhere}
+.pcard .fa{font-size:15px;overflow-wrap:anywhere}
+.pcard .fa .lbl2{color:var(--ink-2);font-weight:400}
+.tags{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tag{font-size:13px;font-weight:500;padding:3px 10px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tag.job{background:var(--gold-bg);color:var(--gold-ink)}
+.fcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px;text-align:left;cursor:pointer;font:inherit;color:var(--ink);min-width:0}
+.fcard:hover{border-color:var(--accent-line)}
+.fcard .fh{font:400 21px/1.25 var(--f-display);color:var(--accent);overflow-wrap:anywhere}
+.fcard .fm{font-size:14.5px;color:var(--ink-2)}
+.fcard .names{font-size:14.5px;overflow-wrap:anywhere}
+.empty{text-align:center;padding:40px 20px;display:grid;gap:12px;justify-items:center;color:var(--ink-2)}
+.empty h3{margin:0;color:var(--ink);font:400 22px/1.3 var(--f-display)}
+.empty p{margin:0;max-width:46ch}
+.skel{height:120px;border-radius:12px;background:linear-gradient(90deg,var(--surface) 0%,var(--surface-2) 50%,var(--surface) 100%);background-size:200% 100%;animation:sh 1.3s linear infinite;border:1px solid var(--line)}
+@keyframes sh{to{background-position:-200% 0}}
+
+/* ---------- Sheet ---------- */
+.sheet{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center;background:var(--scrim)}
+.panel{background:var(--bg);width:100%;max-width:660px;max-height:92vh;max-height:92dvh;border-radius:18px 18px 0 0;display:flex;flex-direction:column;box-shadow:var(--shadow);border-top:3px solid var(--band-gold)}
+@media (min-width:720px){.sheet{align-items:center;padding:24px}.panel{border-radius:18px;max-height:88vh;border:1px solid var(--line);border-top:3px solid var(--band-gold)}}
+.panel-h{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--line)}
+.panel-h .sp{flex:1}
+.iconbtn{appearance:none;border:0;background:none;min-width:44px;height:44px;border-radius:10px;color:var(--ink-2);font:600 15px/1 var(--f-body);cursor:pointer;padding:0 10px}
+.iconbtn:hover{background:var(--surface-2);color:var(--ink)}
+.panel-b{overflow-y:auto;padding-block:18px 28px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-bottom:calc(28px + env(safe-area-inset-bottom,0px));display:grid;gap:18px}
+.ph h2{margin:0;font:400 27px/1.2 var(--f-display);color:var(--accent);overflow-wrap:anywhere}
+.ph h2:focus{outline:none}
+.ph .under{margin:4px 0 0;font-size:16px;overflow-wrap:anywhere}
+.ph .under .lbl2{color:var(--ink-2)}
+.ph .meta{margin:4px 0 0;color:var(--ink-2);font-size:14.5px}
+.secttl{margin:0 0 8px;font-size:14px;font-weight:700;color:var(--gold);letter-spacing:.03em}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.contact{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.contact .num{font-weight:600;font-variant-numeric:tabular-nums;user-select:all}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.frow{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;padding:11px 8px;border-bottom:1px solid var(--line);align-items:center}
+.frow:last-child{border-bottom:0}
+.frow.focus{background:var(--surface-2);border-radius:10px}
+.frow .ava{grid-row:span 2;width:38px;height:38px;font-size:18px}
+.frow .top{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;min-width:0}
+.frow .nm{appearance:none;border:0;background:none;padding:0;font:600 17px/1.3 var(--f-body);color:var(--ink);cursor:pointer;text-align:left;overflow-wrap:anywhere}
+.frow .nm:hover{color:var(--accent);text-decoration:underline}
+.frow .sub2{font-size:14px;color:var(--ink-2);overflow-wrap:anywhere}
+.rel{display:inline-block;font-size:13px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--gold-bg);color:var(--gold-ink);white-space:nowrap}
+.rel.head{background:var(--accent-bg);color:var(--on-accent)}
+.frow.unreg .nm{cursor:default;color:var(--ink-2);font-weight:500}
+.frow.unreg .nm:hover{text-decoration:none;color:var(--ink-2)}
+.note{padding:10px 14px;border-radius:10px;background:var(--gold-bg);color:var(--gold-ink);font-size:14.5px}
+.inlineform{display:grid;gap:10px}
+.inlineform .row{display:flex;gap:8px;flex-wrap:wrap}
+.inlineform .row input{flex:1 1 180px}
+
+/* ---------- Admin ---------- */
+.adm{display:grid;gap:18px}
+.adm h2{margin:0;font:400 28px/1.2 var(--f-display);color:var(--accent)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.tile b{display:block;font:400 32px/1.1 var(--f-display);color:var(--accent);font-variant-numeric:tabular-nums}
+.tile span{font-size:14px;color:var(--ink-2)}
+.bars{display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:minmax(110px,32%) 1fr auto;gap:10px;align-items:center;font-size:15px}
+.bar .track{height:12px;border-radius:6px;background:var(--surface-2);overflow:hidden}
+.bar .fill{height:100%;background:var(--accent-bg);border-radius:6px}
+.bar .v{font-variant-numeric:tabular-nums;color:var(--ink-2);min-width:2ch;text-align:right}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;width:100%;font-size:15px;min-width:460px}
+.tbl th,.tbl td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:13.5px;color:var(--ink-2);font-weight:600}
+.tbl td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.installwrap{max-width:1040px;margin:16px auto 0}
+.install{display:grid;grid-template-columns:auto 1fr auto;gap:10px 14px;align-items:center;background:var(--surface);border:1.5px solid var(--band-gold);border-radius:16px;padding:12px 12px 12px 14px;box-shadow:var(--shadow)}
+.install img{width:52px;height:52px;border-radius:14px;object-fit:cover;object-position:50% 25%;border:2px solid var(--band-gold)}
+.install .itext{min-width:0}
+.install .itext b{display:block;font-size:17px}
+.install p{margin:1px 0 0;font-size:14.5px;color:var(--ink-2)}
+.install #installBtn{grid-column:1 / -1;width:100%}
+@media (min-width:560px){.install #installBtn{width:auto;justify-self:start;grid-column:2 / -1}}
+.install #installX{align-self:start}
+.install ol{grid-column:1 / -1;margin:2px 0 4px;padding-left:26px;font-size:15.5px;display:grid;gap:6px}
+.foot{max-width:1040px;margin:0 auto;padding-block:16px 32px;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between;align-items:center;color:var(--ink-2);font-size:14px;border-top:1px solid var(--line)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:12px;font-weight:500;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;max-width:calc(100% - 32px);text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<style>.band{padding-top:env(safe-area-inset-top,0px)}body::before{background:var(--band-1)}</style>
+</head>
+<body>
+<header class="band">
+  <div class="band-in gut">
+    <img class="medal" src="data:image/jpeg;base64,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" alt="भगवान श्री परशुराम जी" width="88" height="88">
+    <div class="band-text">
+      <p class="mantra">॥ श्री परशुरामाय नमः ॥</p>
+      <h1>अखिल भारतवर्षीय श्री खाण्डल विप्र महासभा</h1>
+      <p class="sub"><b>युवा समिति</b> · मीरा-भायंदर, वसई-विरार (MBVV) · परिवार रजिस्टर</p>
+    </div>
+  </div>
+</header>
+
+<div class="demo" id="demoBar" hidden>
+  <div class="demo-in gut">
+    <p id="demoText"><b>प्रीव्यू:</b> यहाँ भरी जानकारी सिर्फ़ इसी ब्राउज़र में रहती है। समाज के लिए असली लिंक Google Sheet वाले सेटअप से बनेगा। "(उदाहरण)" वाले नाम नमूना हैं · एडमिन PIN: <b>1234</b></p>
+    <button class="btn sm ghost" type="button" id="clearDemo">उदाहरण डेटा हटाएँ</button>
+  </div>
+</div>
+
+<div class="installwrap gut" id="installWrap" hidden>
+  <div class="install" role="region" aria-label="ऐप इंस्टॉल करें">
+    <img src="data:image/jpeg;base64,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" alt="" width="52" height="52">
+    <div class="itext"><b>ऐप फ़ोन में डालें</b><p id="installText">एक बटन दबाएँ — होम स्क्रीन पर परशुराम जी वाला आइकन आ जाएगा।</p></div>
+    <button type="button" class="iconbtn" id="installX" aria-label="अभी नहीं">✕</button>
+    <ol id="installSteps" hidden></ol>
+    <button type="button" class="btn primary" id="installBtn">इंस्टॉल करें</button>
+  </div>
+</div>
+
+<nav class="tabs" aria-label="मुख्य">
+  <div class="tabs-in gut" role="tablist">
+    <button class="tab" role="tab" id="t-form" data-tab="form" aria-selected="true" aria-controls="tab-form">फ़ॉर्म भरें</button>
+    <button class="tab" role="tab" id="t-dir" data-tab="dir" aria-selected="false" aria-controls="tab-dir">सदस्य सूची <span class="pill" id="countPill">0</span></button>
+    <button class="tab" role="tab" id="t-admin" data-tab="admin" aria-selected="false" aria-controls="tab-admin">एडमिन</button>
+  </div>
+</nav>
+
+<main>
+  <!-- ================= FORM ================= -->
+  <section id="tab-form" role="tabpanel" aria-labelledby="t-form">
+    <div class="wrap gut">
+      <div id="formArea">
+        <div class="formhead">
+          <h2 id="formTitle">सदस्य पंजीकरण</h2>
+          <p>3 आसान चरण · लगभग 3 मिनट</p>
+        </div>
+        <div class="editbar" id="editBar" hidden>
+          <span id="editText">आप जानकारी बदल रहे हैं</span>
+          <button type="button" class="btn sm ghost" id="cancelEdit">बदलाव रद्द करें</button>
+        </div>
+        <div class="draftnote" id="draftNote" hidden>
+          <span>आपका अधूरा फ़ॉर्म वापस भर दिया गया है।</span>
+          <button type="button" class="linkbtn" id="clearDraft">खाली फ़ॉर्म से शुरू करें</button>
+        </div>
+        <ol class="stepper" aria-label="फ़ॉर्म के चरण">
+          <li class="on" aria-current="step"><span><span class="n">1</span> व्यक्तिगत</span></li>
+          <li><span><span class="n">2</span> परिवार</span></li>
+          <li><span><span class="n">3</span> काम-काज</span></li>
+        </ol>
+
+        <form id="f" class="card" novalidate autocomplete="on">
+          <!-- STEP 1 -->
+          <fieldset class="step" data-step="1">
+            <div class="step-body">
+              <h3>व्यक्तिगत जानकारी <small>Personal Information</small></h3>
+              <div class="field" data-f="name">
+                <label for="name">पूरा नाम <span class="en">Full Name</span><b class="req">*</b></label>
+                <input type="text" id="name" autocomplete="name" placeholder="जैसे: संदीप कुमार चोटिया">
+                <p class="err"></p>
+              </div>
+              <div class="grid2">
+                <div class="field" data-f="dob">
+                  <label for="dob">जन्म तिथि <span class="en">Date of Birth</span></label>
+                  <input type="date" id="dob" max="">
+                  <p class="err"></p>
+                </div>
+                <div class="field" data-f="age">
+                  <label for="age">आयु <span class="en">Age</span></label>
+                  <input type="number" id="age" inputmode="numeric" min="0" max="120" placeholder="जन्म तिथि से अपने-आप">
+                  <p class="err"></p>
+                </div>
+              </div>
+              <div class="field" data-f="gender">
+                <span class="lbl" id="gender-l">लिंग <span class="en">Gender</span><b class="req">*</b></span>
+                <div class="chips" role="radiogroup" aria-labelledby="gender-l">
+                  <label class="chip"><input type="radio" name="gender" id="g-m" value="पुरुष"><span>पुरुष <small>Male</small></span></label>
+                  <label class="chip"><input type="radio" name="gender" id="g-f" value="महिला"><span>महिला <small>Female</small></span></label>
+                </div>
+                <p class="err"></p>
+              </div>
+              <div class="grid2">
+                <div class="field" data-f="gotra">
+                  <label for="gotra">गोत्र <span class="en">Gotra</span></label>
+                  <input type="text" id="gotra" list="gotraList" placeholder="अपना गोत्र">
+                  <datalist id="gotraList"></datalist>
+                  <p class="err"></p>
+                </div>
+                <div class="field" data-f="marital">
+                  <label for="marital">वैवाहिक स्थिति <span class="en">Marital Status</span></label>
+                  <select id="marital">
+                    <option value="">चुनें</option>
+                    <option>अविवाहित</option>
+                    <option>विवाहित</option>
+                    <option>विधुर / विधवा</option>
+                    <option>तलाकशुदा</option>
+                  </select>
+                  <p class="err"></p>
+                </div>
+              </div>
+              <div class="grid2">
+                <div class="field" data-f="mobile">
+                  <label for="mobile">मोबाइल नंबर <span class="en">Mobile</span><b class="req">*</b></label>
+                  <input type="tel" id="mobile" inputmode="numeric" autocomplete="tel-national" placeholder="10 अंक" maxlength="14">
+                  <p class="err"></p>
+                </div>
+                <div class="field" data-f="whatsapp">
+                  <label for="whatsapp">WhatsApp नंबर <span class="en">WhatsApp</span></label>
+                  <label class="check"><input type="checkbox" id="waSame" checked> मोबाइल वाला ही नंबर</label>
+                  <input type="tel" id="whatsapp" inputmode="numeric" placeholder="10 अंक" maxlength="14" hidden>
+                  <p class="err"></p>
+                </div>
+              </div>
+              <div class="field" data-f="email">
+                <label for="email">ईमेल <span class="en">Email ID</span></label>
+                <input type="email" id="email" autocomplete="email" placeholder="name@gmail.com">
+                <p class="err"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- STEP 2 -->
+          <fieldset class="step" data-step="2" hidden>
+            <div class="step-body">
+              <h3>परिवार की जानकारी <small>Family Details</small></h3>
+              <div class="field" data-f="fatherName">
+                <label for="fatherName">पिता का नाम <span class="en">Father's Name</span><b class="req">*</b></label>
+                <div class="acwrap">
+                  <input type="text" id="fatherName" autocomplete="off" placeholder="नाम लिखें, सूची में हों तो चुनें">
+                  <div class="sugg" id="fatherSugg" hidden></div>
+                </div>
+                <input type="hidden" id="fatherId">
+                <div class="linked" id="fatherLinked" hidden></div>
+                <p class="hint">पिता जी पहले से रजिस्टर हैं तो सूची से चुनें। सदस्य सूची में उनके नाम पर क्लिक करने से पूरा परिवार दिखेगा।</p>
+                <p class="err"></p>
+              </div>
+              <div class="field" data-f="motherName">
+                <label for="motherName">माता का नाम <span class="en">Mother's Name</span></label>
+                <input type="text" id="motherName" autocomplete="off">
+                <p class="err"></p>
+              </div>
+
+              <div class="field" data-f="headMode">
+                <span class="lbl" id="head-l">परिवार मुखिया <span class="en">Family Head</span><b class="req">*</b></span>
+                <div class="chips" role="radiogroup" aria-labelledby="head-l">
+                  <label class="chip"><input type="radio" name="headMode" id="hm-self" value="self"><span>मैं स्वयं मुखिया हूँ</span></label>
+                  <label class="chip"><input type="radio" name="headMode" id="hm-other" value="other"><span>कोई और मुखिया हैं</span></label>
+                </div>
+                <p class="err"></p>
+              </div>
+              <div class="subpanel" id="headPanel" hidden>
+                <button type="button" class="linkbtn" id="fatherIsHead">पिता जी ही मुखिया हैं — उनका नाम भरें</button>
+                <div class="field" data-f="headName">
+                  <label for="headName">मुखिया का नाम <span class="en">Family Head's Name</span><b class="req">*</b></label>
+                  <div class="acwrap">
+                    <input type="text" id="headName" autocomplete="off" placeholder="नाम लिखें, सूची में हों तो चुनें">
+                    <div class="sugg" id="headSugg" hidden></div>
+                  </div>
+                  <input type="hidden" id="headId">
+                  <div class="linked" id="headLinked" hidden></div>
+                  <p class="err"></p>
+                </div>
+                <div class="field" data-f="relation">
+                  <label for="relation">मुखिया से आपका रिश्ता <span class="en">Your relation with Head</span><b class="req">*</b></label>
+                  <select id="relation"></select>
+                  <p class="err"></p>
+                </div>
+              </div>
+
+              <div class="field" data-f="totalMembers">
+                <label for="totalMembers">कुल परिवार सदस्य <span class="en">Total Family Members</span></label>
+                <input type="number" id="totalMembers" inputmode="numeric" min="1" max="99" placeholder="जैसे: 5">
+                <p class="err"></p>
+              </div>
+              <div class="field" data-f="members">
+                <span class="lbl">परिवार के सदस्य और मुखिया से रिश्ता <span class="en">Members &amp; relation with Head</span></span>
+                <p class="hint">मुखिया के अलावा बाकी सदस्यों के नाम। अगर मुखिया जी ने पहले ही भर दिया है तो छोड़ सकते हैं।</p>
+                <div class="mrows" id="mrows"></div>
+                <div><button type="button" class="btn sm ghost" id="addMember">+ सदस्य जोड़ें</button></div>
+                <p class="err"></p>
+              </div>
+
+              <div class="field" data-f="address">
+                <label for="address">निवास का पता <span class="en">Residential Address</span></label>
+                <textarea id="address" autocomplete="street-address" placeholder="मकान/फ्लैट नं., बिल्डिंग, रोड"></textarea>
+                <p class="err"></p>
+              </div>
+              <div class="field" data-f="area">
+                <label for="area">क्षेत्र / इलाका <span class="en">Area / Locality</span></label>
+                <input type="text" id="area" placeholder="जैसे: भायंदर पश्चिम, मीरा रोड, विरार पूर्व">
+                <p class="err"></p>
+              </div>
+              <div class="field" data-f="city">
+                <span class="lbl" id="city-l">शहर <span class="en">City</span><b class="req">*</b></span>
+                <div class="chips" role="radiogroup" aria-labelledby="city-l">
+                  <label class="chip"><input type="radio" name="city" id="c-mb" value="मीरा-भायंदर"><span>मीरा-भायंदर</span></label>
+                  <label class="chip"><input type="radio" name="city" id="c-vr" value="विरार"><span>विरार</span></label>
+                  <label class="chip"><input type="radio" name="city" id="c-ot" value="अन्य"><span>अन्य <small>Other</small></span></label>
+                </div>
+                <p class="err"></p>
+              </div>
+              <div class="field" data-f="cityOther" id="cityOtherWrap" hidden>
+                <label for="cityOther">शहर का नाम <b class="req">*</b></label>
+                <input type="text" id="cityOther" placeholder="जैसे: वसई, नालासोपारा, मुंबई">
+                <p class="err"></p>
+              </div>
+              <div class="field" data-f="native">
+                <label for="native">मूल निवास <span class="en">Native Place</span></label>
+                <input type="text" id="native" placeholder="गाँव / शहर, ज़िला, राज्य">
+                <p class="err"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- STEP 3 -->
+          <fieldset class="step" data-step="3" hidden>
+            <div class="step-body">
+              <h3>काम-काज <small>Occupation</small></h3>
+              <div class="field" data-f="occType">
+                <span class="lbl" id="occ-l">आप क्या करते हैं? <b class="req">*</b></span>
+                <div class="chips" role="radiogroup" aria-labelledby="occ-l" id="occChips"></div>
+                <p class="err"></p>
+              </div>
+              <div class="subpanel" id="occPanel" hidden>
+                <div class="field" data-f="company" id="companyWrap">
+                  <label for="company"><span id="companyL">कंपनी का नाम</span> <span class="en" id="companyEn">Company Name</span></label>
+                  <input type="text" id="company" autocomplete="organization">
+                  <p class="err"></p>
+                </div>
+                <div class="field" data-f="designation" id="desigWrap">
+                  <label for="designation"><span id="desigL">पद / जॉब रोल</span> <span class="en" id="desigEn">Designation / Job Role</span></label>
+                  <input type="text" id="designation" autocomplete="organization-title">
+                  <p class="err"></p>
+                </div>
+                <div class="field" data-f="industry" id="indWrap">
+                  <label for="industry"><span id="indL">उद्योग / कार्य क्षेत्र</span> <span class="en" id="indEn">Industry / Work Field</span></label>
+                  <input type="text" id="industry" list="indList" placeholder="जैसे: IT, बैंकिंग, कपड़ा, शिक्षा">
+                  <datalist id="indList"></datalist>
+                  <p class="err"></p>
+                </div>
+                <div class="field" data-f="occOther" id="occOtherWrap">
+                  <label for="occOther">विवरण <span class="en">Details</span></label>
+                  <input type="text" id="occOther" placeholder="जैसे: विद्यार्थी, गृहिणी, सेवानिवृत्त">
+                  <p class="err"></p>
+                </div>
+              </div>
+              <div class="review" id="review" aria-live="polite"></div>
+            </div>
+          </fieldset>
+
+          <p class="formmsg" id="formMsg" role="alert"></p>
+          <div class="formnav">
+            <button type="button" class="btn ghost" id="prevBtn" hidden>← पीछे</button>
+            <button type="button" class="btn primary fwd" id="nextBtn">आगे बढ़ें →</button>
+            <button type="submit" class="btn primary fwd" id="submitBtn" hidden>जानकारी जमा करें</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card done" id="done" hidden></div>
+    </div>
+  </section>
+
+  <!-- ================= DIRECTORY ================= -->
+  <section id="tab-dir" role="tabpanel" aria-labelledby="t-dir" hidden>
+    <div class="wrap wide gut">
+      <div class="dirhead">
+        <h2>सदस्य सूची</h2>
+        <p id="dirCount"></p>
+      </div>
+      <div id="dirGate" hidden></div>
+      <div id="dirMain">
+        <div class="tools">
+          <input type="search" class="search" id="q" placeholder="नाम, पिता का नाम, गोत्र, मोबाइल या इलाका खोजें" aria-label="खोजें">
+          <div class="seg" role="group" aria-label="दिखाएँ">
+            <button type="button" id="m-people" aria-pressed="true">सदस्य</button>
+            <button type="button" id="m-fam" aria-pressed="false">परिवार</button>
+          </div>
+        </div>
+        <div class="cityf chips" role="radiogroup" aria-label="शहर">
+          <label class="chip"><input type="radio" name="cf" id="cf-all" value="" checked><span>सभी शहर</span></label>
+          <label class="chip"><input type="radio" name="cf" id="cf-mb" value="मीरा-भायंदर"><span>मीरा-भायंदर</span></label>
+          <label class="chip"><input type="radio" name="cf" id="cf-vr" value="विरार"><span>विरार</span></label>
+          <label class="chip"><input type="radio" name="cf" id="cf-ot" value="अन्य"><span>अन्य</span></label>
+        </div>
+        <div id="dirList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ADMIN ================= -->
+  <section id="tab-admin" role="tabpanel" aria-labelledby="t-admin" hidden>
+    <div class="wrap wide gut">
+      <div class="adm" id="adminLogin">
+        <h2>एडमिन</h2>
+        <form class="card inlineform" id="adminForm" novalidate>
+          <p style="margin:0">Excel डाउनलोड, किसी भी एंट्री को बदलना या हटाना सिर्फ़ समिति के लिए है।</p>
+          <label for="adminPin">एडमिन PIN</label>
+          <div class="row">
+            <input type="password" id="adminPin" inputmode="numeric" autocomplete="off">
+            <button class="btn primary" type="submit" id="adminGo">खोलें</button>
+          </div>
+          <p class="err" id="adminErr"></p>
+        </form>
+      </div>
+      <div class="adm" id="adminPanel" hidden></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot gut">
+  <span>॥ श्री परशुरामाय नमः ॥ · युवा समिति, अखिल भारतवर्षीय श्री खाण्डल विप्र महासभा · MBVV</span>
+  <button type="button" class="linkbtn" id="howInstall" hidden>ऐप फ़ोन में कैसे डालें</button>
+</footer>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="panel" id="sheetPanel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="panel-h">
+      <button type="button" class="iconbtn" id="sheetBack" hidden>← वापस</button>
+      <span class="sp"></span>
+      <button type="button" class="iconbtn" id="sheetClose" aria-label="बंद करें">बंद करें ✕</button>
+    </div>
+    <div class="panel-b" id="sheetBody"></div>
+  </div>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+var CFG = window.APP_CONFIG || {};
+var API_URL = String(CFG.apiUrl || '').trim();
+var HAS_API = /^https:\/\/script\.google\.com\/.+\/exec\/?$/.test(API_URL);
+var IS_GAS = !HAS_API && !!(window.google && google.script && google.script.run);
+var IN_PREVIEW = !!window.claude;
+var INSTALLABLE = window.KVP_PWA === true;
+var MODE = HAS_API ? 'http' : (IS_GAS ? 'gas' : 'demo');
+var $ = function(s, r){ return (r||document).querySelector(s); };
+var $$ = function(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+var LS = {
+  get: function(k, d){ try{ var v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set: function(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} },
+  del: function(k){ try{ localStorage.removeItem(k); }catch(e){} }
+};
+var reduceMotion = false; try{ reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+
+/* ---------------- constants ---------------- */
+var RELS = ['पत्नी','पति','पुत्र','पुत्री','पुत्रवधू','दामाद','पौत्र','पौत्री','पौत्रवधू','भाई','भाभी','बहन','पिता','माता','भतीजा','भतीजी','अन्य'];
+var RANK = {'पिता':0,'माता':1,'मुखिया':2,'पत्नी':3,'पति':3,'भाई':4,'भाभी':5,'बहन':6,'पुत्र':7,'पुत्रवधू':8,'पुत्री':9,'दामाद':10,'पौत्र':11,'पौत्रवधू':12,'पौत्री':13,'भतीजा':14,'भतीजी':15,'अन्य':16};
+var OCC = [
+  {v:'नौकरी', en:'Job'}, {v:'व्यवसाय', en:'Business'}, {v:'स्वरोज़गार', en:'Self-employed'},
+  {v:'नौकरी की तलाश', en:'Looking for a Job'}, {v:'अन्य', en:'Other'}
+];
+var OCC_F = {
+  'नौकरी':        {company:['कंपनी का नाम','Company Name'], desig:['पद / जॉब रोल','Designation / Job Role'], ind:['उद्योग / कार्य क्षेत्र','Industry / Work Field']},
+  'व्यवसाय':      {company:['फर्म / व्यवसाय का नाम','Business Name'], desig:['आपकी भूमिका','जैसे: मालिक, पार्टनर'], ind:['व्यवसाय का क्षेत्र','Industry / Work Field']},
+  'स्वरोज़गार':   {company:['काम / फर्म का नाम','Firm Name'], desig:['आपका काम','जैसे: CA, डॉक्टर, टेलर'], ind:['कार्य क्षेत्र','Work Field']},
+  'नौकरी की तलाश': {desig:['कैसी नौकरी चाहिए','Preferred Job Role'], ind:['किस क्षेत्र में','Preferred Field']},
+  'अन्य':          {other:true}
+};
+var INDUSTRIES = ['IT / सॉफ्टवेयर','बैंकिंग / फाइनेंस','CA / अकाउंट्स','कपड़ा व्यापार','किराना / ट्रेडिंग','निर्माण / रियल एस्टेट','शिक्षा','स्वास्थ्य / मेडिकल','सरकारी सेवा','मैन्युफैक्चरिंग','ट्रांसपोर्ट / लॉजिस्टिक्स','पूजा-पाठ / कर्मकांड','मार्केटिंग / सेल्स','अन्य'];
+var DEMO_PIN = '1234';
+
+/* ---------------- helpers ---------------- */
+function digits(s){ return String(s||'').replace(/\D/g,''); }
+function phone10(s){ var d = digits(s); return d.length > 10 ? d.slice(-10) : d; }
+function norm(s){
+  return String(s||'').toLowerCase()
+    .replace(/\(उदाहरण\)/g,' ')
+    .replace(/(^|\s)(श्रीमती|श्री|स्व\.|स्वर्गीय)(?=\s|$)/g,' ')
+    .replace(/\b(late|shri|shree|sri|smt|mr|mrs|ms|dr)\b\.?/g,' ')
+    .replace(/[.,]/g,' ').replace(/\s+/g,' ').trim();
+}
+function ageFrom(dob){
+  if(!dob) return '';
+  var d = new Date(dob + 'T00:00:00'); if(isNaN(d)) return '';
+  var t = new Date(); var a = t.getFullYear() - d.getFullYear();
+  var m = t.getMonth() - d.getMonth(); if(m < 0 || (m === 0 && t.getDate() < d.getDate())) a--;
+  return (a >= 0 && a < 125) ? String(a) : '';
+}
+function ageOf(p){ return ageFrom(p.dob) || (p.age ? String(p.age) : ''); }
+function fmtDate(s){ if(!s) return ''; var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s); return m ? m[3]+'-'+m[2]+'-'+m[1] : s; }
+function cityName(p){ return p.city === 'अन्य' ? (p.cityOther || 'अन्य') : (p.city || ''); }
+function initial(name){
+  var n = String(name||'').replace(/^(श्रीमती|श्री|स्व\.)\s+/,'').trim(); if(!n) return '?';
+  try{ if(window.Intl && Intl.Segmenter){ var it = new Intl.Segmenter('hi',{granularity:'grapheme'}).segment(n)[Symbol.iterator](); return it.next().value.segment; } }catch(e){}
+  return n.charAt(0);
+}
+function occLine(p){
+  if(!p.occType) return '';
+  if(p.occType === 'अन्य') return p.occOther || 'अन्य';
+  if(p.occType === 'नौकरी की तलाश') return 'नौकरी की तलाश' + (p.industry ? ' · ' + p.industry : '');
+  return [p.designation, p.company].filter(Boolean).join(', ') || p.occType;
+}
+function nowStr(){ var d = new Date(); var z = function(n){ return (n<10?'0':'')+n; }; return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())+' '+z(d.getHours())+':'+z(d.getMinutes()); }
+function newId(){ return 'P' + Date.now().toString(36).toUpperCase() + Math.floor(Math.random()*1296).toString(36).toUpperCase(); }
+function newKey(){ var a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789', s=''; for(var i=0;i<6;i++) s += a.charAt(Math.floor(Math.random()*a.length)); return s; }
+var toastT;
+function toast(msg){ var t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function(){ t.classList.remove('show'); }, 2800); }
+function copyText(text, el){
+  try{
+    navigator.clipboard.writeText(text).then(function(){ toast('कॉपी हो गया'); }, function(){ selectEl(el); });
+  }catch(e){ selectEl(el); }
+}
+function selectEl(el){ if(!el) return; try{ var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('चुन लिया गया — कॉपी करें'); }catch(e){} }
+
+/* ---------------- backend: Google Sheet (live) or preview (this browser) ---------------- */
+function gas(fn){
+  var args = Array.prototype.slice.call(arguments, 1);
+  return new Promise(function(res, rej){
+    var r = google.script.run.withSuccessHandler(res).withFailureHandler(function(e){ rej(e instanceof Error ? e : new Error(String(e && e.message || e))); });
+    r[fn].apply(r, args);
+  });
+}
+function http(action, data){
+  var body = JSON.stringify(Object.assign({action:action}, data || {}));
+  return fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:body, redirect:'follow', cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error('सर्वर से जवाब नहीं मिला (' + r.status + ')'); return r.text(); }, function(){ throw new Error('सर्वर से संपर्क नहीं हुआ — इंटरनेट जाँचें'); })
+    .then(function(t){ try{ return JSON.parse(t); }catch(e){ throw new Error('सर्वर ने सही जवाब नहीं दिया — Apps Script के Deploy में "Who has access: Anyone" जाँचें'); } });
+}
+var API;
+if(MODE === 'http'){
+  API = {
+    list: function(pin){ return http('list', {pin: pin || ''}); },
+    index: function(){ return http('index'); },
+    add: function(p){ return http('add', {person:p}); },
+    update: function(id, p, k){ return http('update', {id:id, person:p, key:k}); },
+    checkKey: function(id, k){ return http('checkKey', {id:id, key:k}); },
+    remove: function(id, pin){ return http('delete', {id:id, pin:pin}); },
+    admin: function(pin){ return http('admin', {pin:pin}); }
+  };
+} else if(IS_GAS){
+  API = {
+    list: function(pin){ return gas('apiList', pin || ''); },
+    index: function(){ return gas('apiIndex'); },
+    add: function(p){ return gas('apiAdd', p); },
+    update: function(id, p, k){ return gas('apiUpdate', id, p, k); },
+    checkKey: function(id, k){ return gas('apiCheckKey', id, k); },
+    remove: function(id, pin){ return gas('apiDelete', id, pin); },
+    admin: function(pin){ return gas('apiAdmin', pin); }
+  };
+} else {
+  API = (function(){
+    var K = 'kvp.demo.v1';
+    var data = LS.get(K, null);
+    if(!Array.isArray(data)) data = seedDemo();
+    function persist(){ LS.set(K, data); }
+    function pub(p){ var o = {}; for(var k in p){ if(k !== 'editKey') o[k] = p[k]; } return o; }
+    function wait(v){ return new Promise(function(r){ setTimeout(function(){ r(v); }, 120); }); }
+    return {
+      list: function(){ return wait({ok:true, people:data.map(pub)}); },
+      index: function(){ return wait({ok:true, people:data.map(pub)}); },
+      add: function(p){
+        var dup = data.filter(function(x){ return norm(x.name) === norm(p.name) && phone10(x.mobile) === phone10(p.mobile); })[0];
+        if(dup) return wait({ok:false, error:'यह नाम और मोबाइल नंबर पहले से दर्ज है। बदलना हो तो सदस्य सूची से "जानकारी बदलें" चुनें।'});
+        var rec = Object.assign({}, p, {id:newId(), editKey:newKey(), createdAt:nowStr(), updatedAt:''});
+        data.push(rec); persist();
+        return wait({ok:true, id:rec.id, editKey:rec.editKey});
+      },
+      update: function(id, p, k){
+        var i = data.findIndex(function(x){ return x.id === id; });
+        if(i < 0) return wait({ok:false, error:'यह एंट्री नहीं मिली'});
+        if(k !== data[i].editKey && k !== DEMO_PIN) return wait({ok:false, error:'एडिट कोड गलत है'});
+        data[i] = Object.assign({}, p, {id:id, editKey:data[i].editKey, createdAt:data[i].createdAt, updatedAt:nowStr(), demo:data[i].demo});
+        persist(); return wait({ok:true});
+      },
+      checkKey: function(id, k){ var p = data.filter(function(x){ return x.id === id; })[0]; return wait({ok: !!p && (k === p.editKey || k === DEMO_PIN)}); },
+      remove: function(id, pin){ if(pin !== DEMO_PIN) return wait({ok:false, error:'PIN गलत है'}); data = data.filter(function(x){ return x.id !== id; }); persist(); return wait({ok:true}); },
+      admin: function(pin){ return wait(pin === DEMO_PIN ? {ok:true, sheetUrl:''} : {ok:false, error:'PIN गलत है'}); },
+      clearDemo: function(){ data = data.filter(function(x){ return !x.demo; }); persist(); },
+      hasDemo: function(){ return data.some(function(x){ return x.demo; }); }
+    };
+  })();
+}
+function seedDemo(){
+  var t = '2026-11-01 10:00', base = {demo:true, createdAt:t, updatedAt:'', gotra:'', email:'', cityOther:'', occOther:'', totalMembers:'', members:[], fatherId:'', headId:'', headName:'', relation:'', headSelf:false, age:''};
+  var R = Object.assign({}, base, {id:'DEMO1', editKey:'DEMO01', name:'रमेश शर्मा (उदाहरण)', dob:'1966-03-14', gender:'पुरुष', marital:'विवाहित', mobile:'9000000001', whatsapp:'9000000001',
+    fatherName:'स्व. गोपाल शर्मा (उदाहरण)', motherName:'कमला देवी (उदाहरण)', headSelf:true, headName:'रमेश शर्मा (उदाहरण)', totalMembers:'5',
+    members:[{name:'सुनीता शर्मा (उदाहरण)',relation:'पत्नी'},{name:'अमित शर्मा (उदाहरण)',relation:'पुत्र'},{name:'प्रिया शर्मा (उदाहरण)',relation:'पुत्री'},{name:'विकास शर्मा (उदाहरण)',relation:'पुत्र'}],
+    address:'उदाहरण पता, 150 फीट रोड', area:'भायंदर पश्चिम', city:'मीरा-भायंदर', native:'उदाहरण गाँव, राजस्थान', occType:'व्यवसाय', company:'उदाहरण ट्रेडर्स', designation:'मालिक', industry:'कपड़ा व्यापार'});
+  var S = Object.assign({}, base, {id:'DEMO2', editKey:'DEMO02', name:'सुनीता शर्मा (उदाहरण)', dob:'1971-08-02', gender:'महिला', marital:'विवाहित', mobile:'9000000002', whatsapp:'9000000002',
+    fatherName:'उदाहरण नाम', motherName:'', headId:'DEMO1', headName:R.name, relation:'पत्नी',
+    address:R.address, area:R.area, city:R.city, native:R.native, occType:'अन्य', occOther:'गृहिणी'});
+  var A = Object.assign({}, base, {id:'DEMO3', editKey:'DEMO03', name:'अमित शर्मा (उदाहरण)', dob:'1996-11-20', gender:'पुरुष', marital:'अविवाहित', mobile:'9000000003', whatsapp:'9000000003',
+    fatherName:R.name, fatherId:'DEMO1', motherName:S.name, headId:'DEMO1', headName:R.name, relation:'पुत्र',
+    address:R.address, area:R.area, city:R.city, native:R.native, occType:'नौकरी', company:'उदाहरण कंपनी', designation:'सॉफ्टवेयर इंजीनियर', industry:'IT / सॉफ्टवेयर'});
+  var V = Object.assign({}, base, {id:'DEMO4', editKey:'DEMO04', name:'विकास शर्मा (उदाहरण)', dob:'1992-05-09', gender:'पुरुष', marital:'विवाहित', mobile:'9000000004', whatsapp:'9000000004',
+    fatherName:R.name, fatherId:'DEMO1', motherName:S.name, headSelf:true, headName:'विकास शर्मा (उदाहरण)', totalMembers:'3',
+    members:[{name:'नेहा शर्मा (उदाहरण)',relation:'पत्नी'},{name:'आरव शर्मा (उदाहरण)',relation:'पुत्र'}],
+    address:'उदाहरण पता, विरार', area:'विरार पश्चिम', city:'विरार', native:R.native, occType:'नौकरी की तलाश', designation:'अकाउंटेंट', industry:'CA / अकाउंट्स'});
+  return [R, S, A, V];
+}
+
+/* ---------------- model + family logic ---------------- */
+var M = {people:[], byId:{}, keyCache:{}, groups:null, full:false};
+function setPeople(arr, full){
+  M.people = (arr || []).filter(function(p){ return p && p.id && p.name; }).map(function(p){
+    var o = Object.assign({}, p); o.headSelf = o.headSelf === true || o.headSelf === 'true' || o.headSelf === 'हाँ';
+    if(!Array.isArray(o.members)) o.members = []; return o;
+  });
+  M.people.sort(function(a,b){ return a.name.localeCompare(b.name, 'hi'); });
+  M.byId = {}; M.people.forEach(function(p){ M.byId[p.id] = p; });
+  M.keyCache = {}; M.groups = null; M.full = !!full;
+  updateDatalists();
+  $('#countPill').textContent = M.people.length;
+}
+function matchPerson(name, gotra, exclude){
+  var n = norm(name); if(!n) return null;
+  var c = M.people.filter(function(p){ return p !== exclude && norm(p.name) === n; });
+  if(gotra){ var g = norm(gotra); c = c.filter(function(p){ return !p.gotra || norm(p.gotra) === g; }); }
+  if(c.length === 1) return c[0];
+  var heads = c.filter(function(p){ return p.headSelf; });
+  return heads.length === 1 ? heads[0] : null;
+}
+function fatherOf(p){
+  if(p.fatherId && M.byId[p.fatherId] && M.byId[p.fatherId] !== p) return M.byId[p.fatherId];
+  var f = matchPerson(p.fatherName, p.gotra, p);
+  return f && f.gender !== 'महिला' ? f : null;
+}
+function directHead(p){
+  if(p.headSelf) return p;
+  if(p.headId && M.byId[p.headId]) return M.byId[p.headId];
+  if(p.headName) return matchPerson(p.headName, p.gotra, p);
+  return null;
+}
+function familyKey(p, seen){
+  if(M.keyCache[p.id]) return M.keyCache[p.id];
+  seen = seen || {};
+  if(seen[p.id]) return p.id;
+  seen[p.id] = 1;
+  var key;
+  if(p.headSelf) key = p.id;
+  else {
+    var h = directHead(p);
+    if(h && h !== p) key = familyKey(h, seen);
+    else if(p.headName) key = 'v:' + norm(p.headName) + '|' + norm(p.gotra);
+    else { var f = fatherOf(p); key = f ? familyKey(f, seen) : p.id; }
+  }
+  M.keyCache[p.id] = key; return key;
+}
+function groups(){
+  if(M.groups) return M.groups;
+  var g = {}; M.people.forEach(function(p){ var k = familyKey(p); (g[k] = g[k] || []).push(p); });
+  M.groups = g; return g;
+}
+function familyHeadName(key){
+  if(M.byId[key]) return M.byId[key].name;
+  var m = (groups()[key] || []).filter(function(p){ return p.headName; })[0];
+  return m ? m.headName : '';
+}
+function familyData(key){
+  var members = (groups()[key] || []).slice();
+  var head = M.byId[key] && familyKey(M.byId[key]) === key ? M.byId[key] : null;
+  var headName = head ? head.name : familyHeadName(key);
+  var regNames = {}; M.people.forEach(function(p){ regNames[norm(p.name)] = 1; });
+  var listed = [], seenL = {};
+  var sources = head ? [head].concat(members.filter(function(p){ return p !== head; })) : members;
+  sources.forEach(function(p){ (p.members || []).forEach(function(m){
+    var n = norm(m.name); if(!n || regNames[n] || seenL[n] || n === norm(headName)) return;
+    seenL[n] = 1; listed.push({name:m.name, relation:m.relation || ''});
+  }); });
+  var rel = function(p){ return p === head ? -1 : (RANK[p.relation] != null ? RANK[p.relation] : 50); };
+  members.sort(function(a,b){ return rel(a) - rel(b) || (+ageOf(b)||0) - (+ageOf(a)||0); });
+  listed.sort(function(a,b){ return (RANK[a.relation] != null ? RANK[a.relation] : 50) - (RANK[b.relation] != null ? RANK[b.relation] : 50); });
+  var stated = members.reduce(function(m,p){ return Math.max(m, +p.totalMembers || 0); }, 0);
+  var total = Math.max(stated, members.length + listed.length + (head || !headName ? 0 : 1));
+  var inFam = {}; members.forEach(function(p){ inFam[p.id] = 1; });
+  var branches = Object.keys(groups()).filter(function(k){
+    if(k === key) return false; var h = M.byId[k]; if(!h) return false; var f = fatherOf(h); return f && inFam[f.id];
+  });
+  var parentKey = null;
+  if(head){ var f = fatherOf(head); if(f){ var fk = familyKey(f); if(fk !== key) parentKey = fk; } }
+  var anchor = head || members[0] || null;
+  return {key:key, head:head, headName:headName, members:members, listed:listed, total:total, branches:branches, parentKey:parentKey, anchor:anchor};
+}
+function relLabel(p, F){
+  if(F.head && p === F.head) return '<span class="rel head">मुखिया</span>';
+  var t = p.relation || (p.headSelf ? 'मुखिया' : 'सदस्य');
+  var dh = directHead(p);
+  var extra = (F.head && dh && dh !== F.head && dh !== p) ? ' <span class="sub2">(' + esc(dh.name) + ' के)</span>' : '';
+  return '<span class="rel">' + esc(t) + '</span>' + extra;
+}
+
+/* ---------------- form ---------------- */
+var step = 1, editing = null, lastSaved = null;
+function fillSelect(sel, opts, first){ sel.innerHTML = '<option value="">' + esc(first) + '</option>' + opts.map(function(o){ return '<option>' + esc(o) + '</option>'; }).join(''); }
+fillSelect($('#relation'), RELS, 'रिश्ता चुनें');
+$('#occChips').innerHTML = OCC.map(function(o, i){ return '<label class="chip"><input type="radio" name="occType" id="oc-' + i + '" value="' + esc(o.v) + '"><span>' + esc(o.v) + ' <small>' + esc(o.en) + '</small></span></label>'; }).join('');
+$('#dob').max = new Date().toISOString().slice(0,10);
+function updateDatalists(){
+  var g = {}; M.people.forEach(function(p){ if(p.gotra) g[p.gotra.trim()] = 1; });
+  $('#gotraList').innerHTML = Object.keys(g).sort().map(function(x){ return '<option value="' + esc(x) + '">'; }).join('');
+  var ind = {}; INDUSTRIES.forEach(function(x){ ind[x] = 1; }); M.people.forEach(function(p){ if(p.industry) ind[p.industry.trim()] = 1; });
+  $('#indList').innerHTML = Object.keys(ind).map(function(x){ return '<option value="' + esc(x) + '">'; }).join('');
+}
+
+/* member rows */
+var mrowSeq = 0;
+function addMemberRow(m){
+  m = m || {}; var i = ++mrowSeq;
+  var div = document.createElement('div'); div.className = 'mrow';
+  div.innerHTML = '<input type="text" id="mn-' + i + '" placeholder="सदस्य का नाम" aria-label="सदस्य का नाम">' +
+    '<select id="mr-' + i + '" aria-label="मुखिया से रिश्ता"></select>' +
+    '<button type="button" class="x" aria-label="यह सदस्य हटाएँ">×</button>';
+  fillSelect(div.querySelector('select'), RELS, 'रिश्ता');
+  div.querySelector('input').value = m.name || '';
+  div.querySelector('select').value = m.relation || '';
+  $('#mrows').appendChild(div);
+  return div;
+}
+$('#addMember').addEventListener('click', function(){ addMemberRow().querySelector('input').focus(); saveDraftSoon(); });
+$('#mrows').addEventListener('click', function(e){ if(e.target.closest('.x')){ e.target.closest('.mrow').remove(); saveDraftSoon(); } });
+function readMembers(){
+  return $$('#mrows .mrow').map(function(r){ return {name:r.querySelector('input').value.trim(), relation:r.querySelector('select').value}; }).filter(function(m){ return m.name; });
+}
+
+/* autocomplete link fields */
+function setupAC(inputSel, idSel, linkedSel, suggSel, filter){
+  var inp = $(inputSel), hid = $(idSel), linked = $(linkedSel), sugg = $(suggSel);
+  function showLinked(){
+    var p = hid.value && M.byId[hid.value];
+    if(p){
+      linked.hidden = false;
+      linked.innerHTML = '<span>✓ सूची से जुड़ा: <b>' + esc(p.name) + '</b>' + (cityName(p) ? ' · ' + esc(cityName(p)) : '') + '</span><button type="button" data-unlink>जोड़ हटाएँ</button>';
+    } else { linked.hidden = true; linked.innerHTML = ''; }
+  }
+  function render(){
+    var q = norm(inp.value);
+    if(q.length < 2){ sugg.hidden = true; return; }
+    var list = M.people.filter(function(p){ return (!filter || filter(p)) && (!editing || p.id !== editing.id) && norm(p.name).indexOf(q) >= 0 && p.id !== hid.value; }).slice(0, 6);
+    if(!list.length){ sugg.hidden = true; return; }
+    sugg.innerHTML = '<p class="sugg-h">सूची में मिले — चुनें तो परिवार जुड़ जाएगा</p>' + list.map(function(p){
+      var bits = [p.fatherName ? 'पिता: ' + p.fatherName : '', p.gotra, cityName(p)].filter(Boolean).join(' · ');
+      return '<button type="button" data-pick="' + esc(p.id) + '"><b>' + esc(p.name) + '</b><span>' + esc(bits) + '</span></button>';
+    }).join('');
+    sugg.hidden = false;
+  }
+  inp.addEventListener('input', function(){ if(hid.value){ var p = M.byId[hid.value]; if(!p || p.name !== inp.value.trim()){ hid.value = ''; showLinked(); } } render(); });
+  inp.addEventListener('focus', render);
+  inp.addEventListener('blur', function(){ setTimeout(function(){ if(!sugg.contains(document.activeElement)) sugg.hidden = true; }, 160); });
+  sugg.addEventListener('focusout', function(e){ if(!e.relatedTarget || (!sugg.contains(e.relatedTarget) && e.relatedTarget !== inp)) setTimeout(function(){ if(!sugg.contains(document.activeElement) && document.activeElement !== inp) sugg.hidden = true; }, 0); });
+  inp.addEventListener('keydown', function(e){ if(e.key === 'Escape') sugg.hidden = true; if(e.key === 'ArrowDown' && !sugg.hidden){ e.preventDefault(); var b = sugg.querySelector('button'); if(b) b.focus(); } });
+  sugg.addEventListener('mousedown', function(e){ e.preventDefault(); });
+  sugg.addEventListener('keydown', function(e){
+    var bs = $$('button', sugg), i = bs.indexOf(document.activeElement);
+    if(e.key === 'ArrowDown'){ e.preventDefault(); (bs[i+1] || bs[0]).focus(); }
+    if(e.key === 'ArrowUp'){ e.preventDefault(); if(i <= 0) inp.focus(); else bs[i-1].focus(); }
+    if(e.key === 'Escape'){ sugg.hidden = true; inp.focus(); }
+  });
+  sugg.addEventListener('click', function(e){
+    var b = e.target.closest('[data-pick]'); if(!b) return; var p = M.byId[b.dataset.pick]; if(!p) return;
+    inp.value = p.name; hid.value = p.id; sugg.hidden = true; showLinked(); clearErr(inp.closest('.field')); saveDraftSoon();
+  });
+  linked.addEventListener('click', function(e){ if(e.target.closest('[data-unlink]')){ hid.value = ''; showLinked(); inp.focus(); saveDraftSoon(); } });
+  return {refresh: showLinked};
+}
+var acFather = setupAC('#fatherName', '#fatherId', '#fatherLinked', '#fatherSugg', function(p){ return p.gender !== 'महिला'; });
+var acHead = setupAC('#headName', '#headId', '#headLinked', '#headSugg', null);
+
+function radio(name){ var r = $('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+function setRadio(name, v){ $$('input[name="' + name + '"]').forEach(function(r){ r.checked = r.value === v; }); }
+function val(id){ var el = $('#' + id); return el ? el.value.trim() : ''; }
+function readForm(){
+  var hm = radio('headMode'), waSame = $('#waSame').checked;
+  return {
+    name:val('name'), dob:val('dob'), age:val('age'), gender:radio('gender'), gotra:val('gotra'), marital:val('marital'),
+    mobile:val('mobile'), waSame:waSame, whatsapp: waSame ? val('mobile') : val('whatsapp'), email:val('email'),
+    fatherName:val('fatherName'), fatherId:val('fatherId'), motherName:val('motherName'),
+    headMode:hm, headName:val('headName'), headId:val('headId'), relation:val('relation'),
+    totalMembers:val('totalMembers'), members:readMembers(),
+    address:val('address'), area:val('area'), city:radio('city'), cityOther:val('cityOther'), native:val('native'),
+    occType:radio('occType'), company:val('company'), designation:val('designation'), industry:val('industry'), occOther:val('occOther')
+  };
+}
+function toRecord(d){
+  var self = d.headMode === 'self', of = OCC_F[d.occType] || {};
+  return {
+    name:d.name, dob:d.dob, age: ageFrom(d.dob) || d.age, gender:d.gender, gotra:d.gotra, marital:d.marital,
+    mobile:phone10(d.mobile), whatsapp:phone10(d.whatsapp), email:d.email,
+    fatherName:d.fatherName, fatherId:d.fatherId, motherName:d.motherName,
+    headSelf:self, headName: self ? d.name : d.headName, headId: self ? '' : d.headId, relation: self ? '' : d.relation,
+    totalMembers:d.totalMembers, members:d.members,
+    address:d.address, area:d.area, city:d.city, cityOther: d.city === 'अन्य' ? d.cityOther : '', native:d.native,
+    occType:d.occType, company: of.company ? d.company : '', designation: of.desig ? d.designation : '', industry: of.ind ? d.industry : '', occOther: of.other ? d.occOther : ''
+  };
+}
+function resetForm(){
+  $('#f').reset(); $('#fatherId').value = ''; $('#headId').value = ''; $('#mrows').innerHTML = '';
+  $$('.field.bad').forEach(clearErr); $('#formMsg').textContent = '';
+  acFather.refresh(); acHead.refresh(); syncUI();
+}
+function setForm(r){
+  var set = function(id, v){ var el = $('#' + id); if(el) el.value = v == null ? '' : v; };
+  ['name','dob','age','gotra','marital','mobile','email','fatherName','fatherId','motherName','headName','headId','relation','totalMembers','address','area','cityOther','native','company','designation','industry','occOther'].forEach(function(k){ if(r[k] !== undefined) set(k, r[k]); });
+  if(r.gender !== undefined) setRadio('gender', r.gender);
+  if(r.city !== undefined) setRadio('city', r.city);
+  if(r.occType !== undefined) setRadio('occType', r.occType);
+  if(r.headMode) setRadio('headMode', r.headMode);
+  else if(r.headSelf === true) setRadio('headMode', 'self');
+  else if(r.headName || r.headId) setRadio('headMode', 'other');
+  if(r.headSelf === true){ set('headName',''); set('headId',''); set('relation',''); }
+  if(r.whatsapp !== undefined || r.waSame !== undefined){
+    var same = r.waSame !== undefined ? r.waSame : (!r.whatsapp || phone10(r.whatsapp) === phone10(r.mobile));
+    $('#waSame').checked = same; set('whatsapp', same ? '' : r.whatsapp);
+  }
+  if(Array.isArray(r.members)){ $('#mrows').innerHTML = ''; r.members.forEach(function(m){ addMemberRow(m); }); }
+  acFather.refresh(); acHead.refresh(); syncUI();
+}
+function syncUI(){
+  var dob = val('dob'); if(dob){ var a = ageFrom(dob); if(a) $('#age').value = a; }
+  $('#whatsapp').hidden = $('#waSame').checked;
+  var hm = radio('headMode'); $('#headPanel').hidden = hm !== 'other';
+  $('#cityOtherWrap').hidden = radio('city') !== 'अन्य';
+  var occ = radio('occType'), of = OCC_F[occ];
+  $('#occPanel').hidden = !of;
+  if(of){
+    $('#companyWrap').hidden = !of.company; $('#desigWrap').hidden = !of.desig; $('#indWrap').hidden = !of.ind; $('#occOtherWrap').hidden = !of.other;
+    if(of.company){ $('#companyL').textContent = of.company[0]; $('#companyEn').textContent = of.company[1]; }
+    if(of.desig){ $('#desigL').textContent = of.desig[0]; $('#desigEn').textContent = of.desig[1]; }
+    if(of.ind){ $('#indL').textContent = of.ind[0]; $('#indEn').textContent = of.ind[1]; }
+  }
+  if($('#mrows').children.length === 0) addMemberRow();
+}
+$('#f').addEventListener('input', function(e){ if(e.target.id === 'dob' || e.target.name) syncUI(); var fl = e.target.closest('.field'); if(fl && fl.classList.contains('bad')) clearErr(fl); saveDraftSoon(); });
+$('#f').addEventListener('change', function(e){ syncUI(); var fl = e.target.closest('.field'); if(fl && fl.classList.contains('bad')) clearErr(fl); saveDraftSoon(); });
+$('#fatherIsHead').addEventListener('click', function(){
+  if(!val('fatherName')){ toast('पहले ऊपर पिता का नाम भरें'); $('#fatherName').focus(); return; }
+  $('#headName').value = val('fatherName'); $('#headId').value = val('fatherId');
+  $('#relation').value = radio('gender') === 'महिला' ? 'पुत्री' : 'पुत्र';
+  acHead.refresh(); clearErr($('[data-f="headName"]')); clearErr($('[data-f="relation"]')); saveDraftSoon();
+});
+
+/* validation */
+function clearErr(fl){ if(!fl) return; fl.classList.remove('bad'); var e = fl.querySelector('.err'); if(e) e.textContent = ''; }
+function validate(n){
+  var d = readForm(), errs = {};
+  if(n === 1){
+    if(!d.name) errs.name = 'अपना पूरा नाम लिखें';
+    if(d.dob && !ageFrom(d.dob)) errs.dob = 'जन्म तिथि सही नहीं लगती';
+    if(!d.gender) errs.gender = 'पुरुष या महिला चुनें';
+    if(phone10(d.mobile).length !== 10) errs.mobile = '10 अंकों का मोबाइल नंबर लिखें';
+    if(!d.waSame && d.whatsapp && phone10(d.whatsapp).length !== 10) errs.whatsapp = '10 अंकों का WhatsApp नंबर लिखें';
+    if(d.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) errs.email = 'ईमेल सही नहीं लगता, जैसे name@gmail.com';
+  }
+  if(n === 2){
+    if(!d.fatherName) errs.fatherName = 'पिता का नाम लिखें';
+    if(!d.headMode) errs.headMode = 'चुनें कि परिवार के मुखिया कौन हैं';
+    if(d.headMode === 'other'){
+      if(!d.headName) errs.headName = 'मुखिया का नाम लिखें';
+      if(!d.relation) errs.relation = 'मुखिया से अपना रिश्ता चुनें';
+    }
+    if(!d.city) errs.city = 'शहर चुनें';
+    if(d.city === 'अन्य' && !d.cityOther) errs.cityOther = 'शहर का नाम लिखें';
+  }
+  if(n === 3){ if(!d.occType) errs.occType = 'इनमें से एक चुनें'; }
+  var stepEl = $('.step[data-step="' + n + '"]');
+  $$('.field', stepEl).forEach(clearErr);
+  var first = null;
+  Object.keys(errs).forEach(function(k){
+    var fl = $('[data-f="' + k + '"]', stepEl); if(!fl) return;
+    fl.classList.add('bad'); fl.querySelector('.err').textContent = errs[k];
+    if(!first) first = fl;
+  });
+  if(first){ var inp = first.querySelector('input:not([type=hidden]),select,textarea'); if(inp) inp.focus({preventScroll:true}); first.scrollIntoView({block:'center', behavior: reduceMotion ? 'auto' : 'smooth'}); }
+  return !first;
+}
+function showStep(n, scroll){
+  step = n;
+  $$('.step').forEach(function(f){ f.hidden = +f.dataset.step !== n; });
+  $$('.stepper li').forEach(function(li, i){ li.classList.toggle('on', i+1 === n); li.classList.toggle('done', i+1 < n); if(i+1 === n) li.setAttribute('aria-current','step'); else li.removeAttribute('aria-current'); });
+  $('#prevBtn').hidden = n === 1; $('#nextBtn').hidden = n === 3; $('#submitBtn').hidden = n !== 3;
+  $('#formMsg').textContent = '';
+  if(n === 3) renderReview();
+  if(scroll !== false){ var top = $('#formArea').getBoundingClientRect().top + window.pageYOffset - 60; window.scrollTo({top: Math.max(0, top), behavior: reduceMotion ? 'auto' : 'smooth'}); }
+}
+$('#nextBtn').addEventListener('click', function(){ if(validate(step)){ showStep(step + 1); saveDraftSoon(); } });
+$('#prevBtn').addEventListener('click', function(){ showStep(step - 1); });
+function renderReview(){
+  var r = toRecord(readForm());
+  var rows = [
+    ['नाम', r.name], ['जन्म तिथि / आयु', [fmtDate(r.dob), r.age ? r.age + ' वर्ष' : ''].filter(Boolean).join(' · ')], ['लिंग', r.gender], ['गोत्र', r.gotra],
+    ['मोबाइल', r.mobile], ['पिता', r.fatherName], ['मुखिया', r.headSelf ? 'स्वयं' : (r.headName + (r.relation ? ' (' + r.relation + ')' : ''))],
+    ['सदस्य सूची', r.members.length ? r.members.map(function(m){ return m.name + (m.relation ? ' (' + m.relation + ')' : ''); }).join(', ') : ''],
+    ['शहर', cityName(r) + (r.area ? ', ' + r.area : '')], ['मूल निवास', r.native]
+  ].filter(function(x){ return x[1]; });
+  $('#review').innerHTML = '<h4>जमा करने से पहले एक बार देख लें</h4><dl class="kv">' + rows.map(function(x){ return '<dt>' + esc(x[0]) + '</dt><dd>' + esc(x[1]) + '</dd>'; }).join('') + '</dl>';
+}
+
+/* draft (this browser only) */
+var draftT;
+function saveDraftSoon(){ if(editing) return; clearTimeout(draftT); draftT = setTimeout(function(){ var d = readForm(); if(d.name || d.mobile || d.fatherName) LS.set('kvp.draft', {d:d, step:step}); }, 400); }
+$('#clearDraft').addEventListener('click', function(){ LS.del('kvp.draft'); resetForm(); showStep(1, false); $('#draftNote').hidden = true; $('#name').focus(); });
+
+/* submit */
+$('#f').addEventListener('submit', function(e){
+  e.preventDefault();
+  for(var n = 1; n <= 3; n++){ if(!validate(n)){ showStep(n, false); validate(n); return; } }
+  var rec = toRecord(readForm());
+  var btn = $('#submitBtn'); btn.disabled = true; btn.textContent = 'सेव हो रहा है…'; $('#formMsg').textContent = '';
+  var wasEdit = editing;
+  var p = wasEdit ? API.update(wasEdit.id, rec, wasEdit.key) : API.add(rec);
+  p.then(function(r){
+    if(!r || !r.ok){ $('#formMsg').textContent = (r && r.error) || 'सेव नहीं हो सका। दोबारा कोशिश करें।'; return; }
+    var id = wasEdit ? wasEdit.id : r.id;
+    if(!wasEdit){ var keys = LS.get('kvp.keys', {}); keys[r.id] = r.editKey; LS.set('kvp.keys', keys); }
+    LS.del('kvp.draft'); $('#draftNote').hidden = true;
+    lastSaved = {id:id, key: wasEdit ? null : r.editKey, name:rec.name, updated:!!wasEdit};
+    endEdit(true);
+    return refresh().then(function(){ showDone(); });
+  }).catch(function(err){
+    $('#formMsg').textContent = 'सेव नहीं हो सका: ' + (err && err.message || 'इंटरनेट जाँचें') + '। दोबारा "जानकारी जमा करें" दबाएँ।';
+  }).then(function(){ btn.disabled = false; btn.textContent = editing ? 'बदलाव सेव करें' : 'जानकारी जमा करें'; });
+});
+function showDone(){
+  var s = lastSaved; if(!s) return;
+  var p = M.byId[s.id]; var key = p ? familyKey(p) : '';
+  var codeHtml = s.key ? '<div class="codebox"><span>आपका एडिट कोड</span><strong id="doneCode">' + esc(s.key) + '</strong><button type="button" class="btn sm ghost" data-copy="' + esc(s.key) + '" data-copyel="doneCode">कॉपी करें</button></div>' +
+    '<p>बाद में अपनी जानकारी बदलने के लिए यह कोड चाहिए। इसे सँभाल कर रखें।</p>' +
+    '<a class="btn sm gold" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent('खाण्डल विप्र परिवार रजिस्टर — ' + s.name + ' का एडिट कोड: ' + s.key) + '">कोड खुद को WhatsApp करें</a>' : '';
+  $('#done').innerHTML = '<div class="seal" aria-hidden="true">✓</div>' +
+    '<h2>' + (s.updated ? 'बदलाव सेव हो गए' : 'धन्यवाद, ' + esc(s.name) + ' जी!') + '</h2>' +
+    '<p>' + (s.updated ? 'आपकी जानकारी अपडेट हो गई है।' : 'आपकी जानकारी समाज के परिवार रजिस्टर में जुड़ गई है।') + '</p>' + codeHtml +
+    '<div class="btnrow">' + (key ? '<button type="button" class="btn primary" data-family="' + esc(key) + '" data-focus="' + esc(s.id) + '">मेरा परिवार देखें</button>' +
+    '<button type="button" class="btn ghost" data-addfam="' + esc(key) + '">परिवार के अगले सदस्य का फ़ॉर्म</button>' : '') +
+    '<button type="button" class="btn ghost" id="newForm">नया फ़ॉर्म</button></div>';
+  $('#formArea').hidden = true; $('#done').hidden = false;
+  window.scrollTo({top:0, behavior: reduceMotion ? 'auto' : 'smooth'});
+}
+function backToForm(){ $('#done').hidden = true; $('#formArea').hidden = false; }
+document.addEventListener('click', function(e){ if(e.target.id === 'newForm'){ backToForm(); resetForm(); showStep(1); $('#name').focus(); } });
+
+/* edit */
+function beginEdit(p, key){
+  editing = {id:p.id, key:key};
+  backToForm(); resetForm(); setForm(p);
+  $('#formTitle').textContent = 'जानकारी बदलें'; $('#editText').textContent = p.name + ' की जानकारी बदल रहे हैं';
+  $('#editBar').hidden = false; $('#draftNote').hidden = true; $('#submitBtn').textContent = 'बदलाव सेव करें';
+  closeSheet(); switchTab('form'); showStep(1);
+}
+function endEdit(silent){
+  editing = null; $('#editBar').hidden = true; $('#formTitle').textContent = 'सदस्य पंजीकरण'; $('#submitBtn').textContent = 'जानकारी जमा करें';
+  if(!silent){ resetForm(); showStep(1, false); }
+}
+$('#cancelEdit').addEventListener('click', function(){ endEdit(false); toast('बदलाव रद्द किए गए'); });
+
+/* start a form for someone in a family */
+function startFamilyAdd(key, preset){
+  var F = familyData(key), h = F.head, b = F.anchor || {};
+  editing = null; $('#editBar').hidden = true; $('#formTitle').textContent = 'सदस्य पंजीकरण';
+  backToForm(); resetForm();
+  var r = {headMode:'other', headName: h ? h.name : F.headName, headId: h ? h.id : '', address:b.address || '', area:b.area || '', city:b.city || '', cityOther:b.cityOther || '', native:b.native || '', gotra:b.gotra || ''};
+  if(preset){
+    r.name = preset.name || ''; r.relation = preset.relation || '';
+    if(h && (preset.relation === 'पुत्र' || preset.relation === 'पुत्री')){ r.fatherName = h.name; r.fatherId = h.id; }
+    if(preset.relation === 'पुत्री' || preset.relation === 'पत्नी' || preset.relation === 'पुत्रवधू' || preset.relation === 'माता' || preset.relation === 'बहन' || preset.relation === 'भाभी' || preset.relation === 'पौत्री' || preset.relation === 'भतीजी') r.gender = 'महिला';
+    else if(preset.relation) r.gender = 'पुरुष';
+  }
+  setForm(r); closeSheet(); switchTab('form'); showStep(1);
+  toast('मुखिया और पता पहले से भरा है — बाकी जानकारी भरें');
+  $('#name').focus({preventScroll:true});
+}
+
+/* ---------------- data load ---------------- */
+var dirState = 'loading', dirError = '', adminPin = '', adminInfo = null;
+function refresh(){
+  var pin = adminPin || LS.get('kvp.viewPin', '');
+  return API.list(pin).then(function(r){
+    if(r && r.ok){ setPeople(r.people, true); dirState = 'ready'; }
+    else if(r && r.needPin){
+      dirState = 'needPin'; if(pin && !adminPin) LS.del('kvp.viewPin');
+      return API.index().then(function(ix){ if(ix && ix.ok) setPeople(ix.people, false); });
+    } else { dirState = 'error'; dirError = (r && r.error) || ''; }
+  }).catch(function(err){ dirState = 'error'; dirError = err && err.message || ''; })
+  .then(function(){ renderDir(); if(adminInfo) renderAdmin(); if(!$('#sheet').hidden && stack.length) renderSheet(); });
+}
+
+/* ---------------- tabs ---------------- */
+function switchTab(name){
+  $$('.tab').forEach(function(t){ t.setAttribute('aria-selected', t.dataset.tab === name ? 'true' : 'false'); });
+  ['form','dir','admin'].forEach(function(n){ $('#tab-' + n).hidden = n !== name; });
+  if(name === 'dir') renderDir();
+  if(name === 'admin' && adminInfo) renderAdmin();
+}
+$$('.tab').forEach(function(t){ t.addEventListener('click', function(){ switchTab(t.dataset.tab); }); });
+
+/* ---------------- directory ---------------- */
+var dirMode = 'people', dirCity = '', dirQ = '';
+$('#q').addEventListener('input', function(e){ dirQ = e.target.value; renderDirList(); });
+$('#m-people').addEventListener('click', function(){ dirMode = 'people'; renderDir(); });
+$('#m-fam').addEventListener('click', function(){ dirMode = 'fam'; renderDir(); });
+$$('input[name="cf"]').forEach(function(r){ r.addEventListener('change', function(){ dirCity = r.value; renderDirList(); }); });
+function renderDir(){
+  $('#m-people').setAttribute('aria-pressed', dirMode === 'people'); $('#m-fam').setAttribute('aria-pressed', dirMode === 'fam');
+  var gate = $('#dirGate'), main = $('#dirMain');
+  if(dirState === 'needPin'){
+    gate.hidden = false; main.hidden = true; $('#dirCount').textContent = '';
+    gate.innerHTML = '<form class="card inlineform" id="viewPinForm" novalidate><h3 style="margin:0">समाज कोड डालें</h3><p style="margin:0;color:var(--ink-2)">सदस्यों के मोबाइल और पते सुरक्षित रहें, इसलिए सूची देखने के लिए समाज का कोड चाहिए। कोड समिति के WhatsApp ग्रुप में मिलेगा।</p><div class="row"><input type="password" id="viewPin" aria-label="समाज कोड" autocomplete="off"><button class="btn primary" type="submit">सूची खोलें</button></div><p class="err" id="viewPinErr"></p></form>';
+    return;
+  }
+  gate.hidden = true; main.hidden = false;
+  renderDirList();
+}
+function matchesQ(p, q, qd){
+  if(!q) return true;
+  if(qd.length >= 3 && (phone10(p.mobile).indexOf(qd) >= 0 || phone10(p.whatsapp).indexOf(qd) >= 0)) return true;
+  return [p.name, p.fatherName, p.motherName, p.gotra, p.area, p.native, p.company, p.headName, cityName(p), p.industry, p.designation].some(function(x){ return norm(x).indexOf(q) >= 0; });
+}
+function renderDirList(){
+  var box = $('#dirList');
+  if(dirState === 'loading'){ box.innerHTML = '<div class="cards"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>'; $('#dirCount').textContent = 'लोड हो रहा है…'; return; }
+  if(dirState === 'error'){ box.innerHTML = '<div class="empty"><h3>सूची लोड नहीं हुई</h3><p>' + esc(dirError || 'इंटरनेट कनेक्शन जाँचें।') + '</p><button class="btn primary" type="button" id="retryLoad">फिर से कोशिश करें</button></div>'; $('#dirCount').textContent = ''; return; }
+  var q = norm(dirQ), qd = digits(dirQ);
+  var list = M.people.filter(function(p){ return (!dirCity || p.city === dirCity) && matchesQ(p, q, qd); });
+  var g = groups(), famCount = Object.keys(g).length;
+  $('#dirCount').textContent = M.people.length + ' सदस्य · ' + famCount + ' परिवार';
+  if(!M.people.length){
+    box.innerHTML = '<div class="empty"><h3>अभी कोई सदस्य नहीं जुड़ा</h3><p>फ़ॉर्म भरते ही सदस्य यहाँ दिखेंगे। पिता के नाम पर क्लिक करने से पूरा परिवार खुलेगा।</p><button class="btn primary" type="button" data-goto="form">पहला फ़ॉर्म भरें</button></div>';
+    return;
+  }
+  if(dirMode === 'fam'){
+    var keys = {}; list.forEach(function(p){ keys[familyKey(p)] = 1; });
+    var fams = Object.keys(keys).map(familyData).sort(function(a,b){ return a.headName.localeCompare(b.headName, 'hi'); });
+    if(!fams.length){ box.innerHTML = noMatch(); return; }
+    box.innerHTML = '<div class="cards">' + fams.map(function(F){
+      var names = F.members.filter(function(p){ return p !== F.head; }).map(function(p){ return p.name; }).concat(F.listed.map(function(m){ return m.name; }));
+      var place = F.anchor ? [F.anchor.area, cityName(F.anchor)].filter(Boolean).join(', ') : '';
+      return '<button type="button" class="fcard" data-family="' + esc(F.key) + '"><span class="fh">' + esc(F.headName || 'परिवार') + ' का परिवार</span>' +
+        '<span class="fm">' + F.members.length + ' रजिस्टर्ड · कुल ' + F.total + ' सदस्य' + (place ? ' · ' + esc(place) : '') + '</span>' +
+        (names.length ? '<span class="names">' + esc(names.slice(0, 6).join(', ')) + (names.length > 6 ? ' …' : '') + '</span>' : '') + '</button>';
+    }).join('') + '</div>';
+    return;
+  }
+  if(!list.length){ box.innerHTML = noMatch(); return; }
+  box.innerHTML = '<div class="cards">' + list.map(personCard).join('') + '</div>';
+}
+function noMatch(){ return '<div class="empty"><h3>कोई नहीं मिला</h3><p>दूसरा नाम या शहर आज़माएँ।</p></div>'; }
+function personCard(p){
+  var a = ageOf(p), meta = [a ? a + ' वर्ष' : '', p.gender, p.gotra ? 'गोत्र ' + p.gotra : ''].filter(Boolean).join(' · ');
+  var fa = p.fatherName ? '<div class="fa"><span class="lbl2">पिता: </span><button type="button" class="linkbtn" data-father="' + esc(p.id) + '" title="पूरा परिवार देखें">' + esc(p.fatherName) + '</button></div>' : '';
+  var occ = occLine(p);
+  return '<article class="pcard"><span class="ava" aria-hidden="true">' + esc(initial(p.name)) + '</span>' +
+    '<button type="button" class="pname" data-person="' + esc(p.id) + '">' + esc(p.name) + '</button>' +
+    '<div class="meta">' + esc(meta) + '</div>' + fa +
+    '<div class="tags">' + (cityName(p) ? '<span class="tag">' + esc([p.area, cityName(p)].filter(Boolean).join(', ')) + '</span>' : '') +
+    (occ ? '<span class="tag' + (p.occType === 'नौकरी की तलाश' ? ' job' : '') + '">' + esc(occ) + '</span>' : '') + '</div></article>';
+}
+
+/* ---------------- sheet: person & family ---------------- */
+var stack = [], lastFocus = null;
+function openSheet(v){ if($('#sheet').hidden) lastFocus = document.activeElement; stack.push(v); renderSheet(); }
+function backSheet(){ stack.pop(); if(stack.length) renderSheet(); else closeSheet(); }
+function closeSheet(){ stack.length = 0; $('#sheet').hidden = true; document.body.classList.remove('noscroll'); if(lastFocus && lastFocus.focus && document.contains(lastFocus)) lastFocus.focus(); }
+function renderSheet(){
+  var v = stack[stack.length - 1]; if(!v) return closeSheet();
+  $('#sheetBody').innerHTML = v.type === 'person' ? personHTML(v) : familyHTML(v);
+  $('#sheetBack').hidden = stack.length < 2;
+  $('#sheet').hidden = false; document.body.classList.add('noscroll');
+  $('#sheetBody').scrollTop = 0;
+  var t = $('#sheetTitle'); if(t) t.focus({preventScroll:true});
+}
+$('#sheetClose').addEventListener('click', closeSheet);
+$('#sheetBack').addEventListener('click', backSheet);
+$('#sheet').addEventListener('click', function(e){ if(e.target.id === 'sheet') closeSheet(); });
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !$('#sheet').hidden) closeSheet(); });
+
+function kvRows(rows){ rows = rows.filter(function(r){ return r[1]; }); return rows.length ? '<dl class="kv">' + rows.map(function(r){ return '<dt>' + esc(r[0]) + '</dt><dd>' + (r[2] ? r[1] : esc(r[1])) + '</dd>'; }).join('') + '</dl>' : ''; }
+function contactHTML(label, num, wa){
+  var n = phone10(num); if(!n) return '';
+  var id = 'c' + Math.random().toString(36).slice(2,8);
+  return '<div class="contact"><span class="lbl2" style="color:var(--ink-2);min-width:76px">' + esc(label) + '</span><span class="num" id="' + id + '">' + esc(n.replace(/(\d{5})(\d{5})/, '$1 $2')) + '</span>' +
+    '<button type="button" class="btn sm ghost" data-copy="' + esc(n) + '" data-copyel="' + id + '">कॉपी</button>' +
+    (wa ? '<a class="btn sm gold" href="https://wa.me/91' + esc(n) + '" target="_blank" rel="noopener">WhatsApp</a>' : '') + '</div>';
+}
+function personHTML(v){
+  var p = M.byId[v.id]; if(!p) return '<p>यह सदस्य अब सूची में नहीं है।</p>';
+  var a = ageOf(p), f = fatherOf(p), key = familyKey(p), headName = familyHeadName(key);
+  var under = p.fatherName ? '<p class="under"><span class="lbl2">' + (p.gender === 'महिला' ? 'पुत्री' : (p.gender === 'पुरुष' ? 'पुत्र' : 'संतान')) + ' — </span><button type="button" class="linkbtn" data-father="' + esc(p.id) + '">' + esc(p.fatherName) + '</button> <span class="lbl2">(क्लिक करें: पूरा परिवार)</span></p>' : '';
+  var meta = [a ? a + ' वर्ष' : '', p.gender, p.marital].filter(Boolean).join(' · ');
+  var of = OCC_F[p.occType] || {};
+  var occRows = [['काम-काज', p.occType]];
+  if(of.company) occRows.push([of.company[0], p.company]);
+  if(of.desig) occRows.push([of.desig[0], p.designation]);
+  if(of.ind) occRows.push([of.ind[0], p.industry]);
+  if(of.other) occRows.push(['विवरण', p.occOther]);
+  var contact = M.full ? (contactHTML('मोबाइल', p.mobile, false) + (p.whatsapp && phone10(p.whatsapp) !== phone10(p.mobile) ? contactHTML('WhatsApp', p.whatsapp, true) : (phone10(p.mobile) ? '<div class="contact"><span class="lbl2" style="color:var(--ink-2);min-width:76px">WhatsApp</span><span>इसी नंबर पर</span><a class="btn sm gold" href="https://wa.me/91' + esc(phone10(p.mobile)) + '" target="_blank" rel="noopener">WhatsApp</a></div>' : '')) + (p.email ? '<div class="contact"><span class="lbl2" style="color:var(--ink-2);min-width:76px">ईमेल</span><span class="num" style="font-weight:500;overflow-wrap:anywhere">' + esc(p.email) + '</span></div>' : '')) : '';
+  var famRel = p.headSelf ? 'स्वयं मुखिया' : [headName, p.relation ? '(' + p.relation + ')' : ''].filter(Boolean).join(' ');
+  var editBlock = '';
+  if(v.askCode){
+    editBlock = '<form class="box inlineform" id="codeForm" data-id="' + esc(p.id) + '" novalidate><label for="editCode">एडिट कोड डालें</label><p class="hint">फ़ॉर्म जमा करते समय जो 6 अक्षर का कोड मिला था। कोड न हो तो समिति से संपर्क करें।</p><div class="row"><input type="text" id="editCode" autocomplete="off" autocapitalize="characters" maxlength="10"><button class="btn primary" type="submit">आगे बढ़ें</button></div><p class="err" id="codeErr"></p></form>';
+  }
+  if(v.confirmDel){
+    editBlock += '<div class="box" style="border-color:var(--err)"><p style="margin:0 0 10px;font-weight:600">' + esc(p.name) + ' की एंट्री हमेशा के लिए हटानी है?</p><div class="actions"><button type="button" class="btn danger" data-delyes="' + esc(p.id) + '">हाँ, हटाएँ</button><button type="button" class="btn ghost" data-delno>रहने दें</button></div></div>';
+  }
+  return '<div class="ph"><h2 id="sheetTitle" tabindex="-1">' + esc(p.name) + '</h2>' + under + (meta ? '<p class="meta">' + esc(meta) + '</p>' : '') + '</div>' +
+    '<div class="actions"><button type="button" class="btn primary" data-family="' + esc(key) + '" data-focus="' + esc(p.id) + '">पूरा परिवार देखें</button>' +
+    (M.full ? '<button type="button" class="btn ghost" data-edit="' + esc(p.id) + '">जानकारी बदलें</button>' : '') +
+    (adminPin ? '<button type="button" class="btn danger" data-del="' + esc(p.id) + '">हटाएँ</button>' : '') + '</div>' + editBlock +
+    (contact ? '<div class="box"><p class="secttl">संपर्क</p><div style="display:grid;gap:10px">' + contact + '</div></div>' : '') +
+    '<div class="box"><p class="secttl">व्यक्तिगत</p>' + kvRows([['जन्म तिथि', fmtDate(p.dob)], ['आयु', a ? a + ' वर्ष' : ''], ['लिंग', p.gender], ['गोत्र', p.gotra], ['वैवाहिक स्थिति', p.marital]]) + '</div>' +
+    '<div class="box"><p class="secttl">परिवार</p>' + kvRows([
+      ['पिता का नाम', p.fatherName ? '<button type="button" class="linkbtn" data-father="' + esc(p.id) + '">' + esc(p.fatherName) + '</button>' + (f ? ' <span class="rel">रजिस्टर्ड</span>' : '') : '', true],
+      ['माता का नाम', p.motherName], ['परिवार मुखिया', famRel], ['कुल परिवार सदस्य', p.totalMembers],
+      ['सदस्य सूची', (p.members || []).map(function(m){ return m.name + (m.relation ? ' (' + m.relation + ')' : ''); }).join(', ')],
+      ['पता', M.full ? p.address : ''], ['क्षेत्र', p.area], ['शहर', cityName(p)], ['मूल निवास', p.native]]) + '</div>' +
+    (p.occType ? '<div class="box"><p class="secttl">काम-काज</p>' + kvRows(occRows) + '</div>' : '');
+}
+function familyHTML(v){
+  var F = familyData(v.key);
+  if(!F.members.length) return '<p>यह परिवार नहीं मिला।</p>';
+  var place = F.anchor ? [F.anchor.address && M.full ? F.anchor.address : '', F.anchor.area, cityName(F.anchor)].filter(Boolean).join(', ') : '';
+  var title = (F.head ? F.head.name : F.headName) + ' का परिवार';
+  var parent = '';
+  if(F.parentKey){ var pf = familyData(F.parentKey); parent = '<button type="button" class="btn sm ghost" data-family="' + esc(F.parentKey) + '">↑ मूल परिवार: ' + esc(pf.headName) + '</button>'; }
+  var rows = F.members.map(function(p){
+    var a = ageOf(p), occ = occLine(p);
+    var sub = [a ? a + ' वर्ष' : '', p.fatherName && p !== F.head ? 'पिता: ' + p.fatherName : '', occ, M.full && phone10(p.mobile) ? phone10(p.mobile) : ''].filter(Boolean).join(' · ');
+    return '<div class="frow' + (v.focus === p.id ? ' focus' : '') + '"><span class="ava" aria-hidden="true">' + esc(initial(p.name)) + '</span>' +
+      '<div class="top"><button type="button" class="nm" data-person="' + esc(p.id) + '">' + esc(p.name) + '</button>' + relLabel(p, F) + '</div>' +
+      '<div class="sub2">' + esc(sub) + '</div></div>';
+  }).join('');
+  var virtualHead = !F.head && F.headName ? '<div class="frow unreg"><span class="ava" aria-hidden="true">' + esc(initial(F.headName)) + '</span><div class="top"><span class="nm">' + esc(F.headName) + '</span><span class="rel head">मुखिया</span></div><div class="sub2">अभी रजिस्टर नहीं · <button type="button" class="linkbtn" data-regfrom="' + esc(F.key) + '" data-rname="' + esc(F.headName) + '" data-rrel="__head">इनका फ़ॉर्म भरें</button></div></div>' : '';
+  var listed = F.listed.map(function(m){
+    return '<div class="frow unreg"><span class="ava" aria-hidden="true">' + esc(initial(m.name)) + '</span><div class="top"><span class="nm">' + esc(m.name) + '</span>' + (m.relation ? '<span class="rel">' + esc(m.relation) + '</span>' : '') + '</div>' +
+      '<div class="sub2">सूची में नाम है, रजिस्टर नहीं · <button type="button" class="linkbtn" data-regfrom="' + esc(F.key) + '" data-rname="' + esc(m.name) + '" data-rrel="' + esc(m.relation) + '">इनका फ़ॉर्म भरें</button></div></div>';
+  }).join('');
+  var branches = F.branches.map(function(k){ var B = familyData(k); return '<button type="button" class="btn sm ghost" data-family="' + esc(k) + '">' + esc(B.headName) + ' का परिवार (' + B.total + ')</button>'; }).join('');
+  return '<div class="ph"><h2 id="sheetTitle" tabindex="-1">' + esc(title) + '</h2><p class="meta">' + F.members.length + ' रजिस्टर्ड · कुल ' + F.total + ' सदस्य' + (place ? ' · ' + esc(place) : '') + '</p></div>' +
+    (v.note ? '<div class="note">' + esc(v.note) + '</div>' : '') + (parent ? '<div class="actions">' + parent + '</div>' : '') +
+    '<div class="box" style="padding:6px 10px">' + virtualHead + rows + listed + '</div>' +
+    (branches ? '<div><p class="secttl">इस परिवार से जुड़े अलग परिवार</p><div class="actions">' + branches + '</div></div>' : '') +
+    '<div class="actions"><button type="button" class="btn primary" data-addfam="' + esc(F.key) + '">+ इस परिवार में सदस्य जोड़ें</button></div>';
+}
+function openFatherFamily(id){
+  var p = M.byId[id]; if(!p) return;
+  var f = fatherOf(p);
+  if(f) openSheet({type:'family', key:familyKey(f), focus:f.id});
+  else openSheet({type:'family', key:familyKey(p), focus:p.id, note:'पिता "' + p.fatherName + '" अभी अलग से रजिस्टर नहीं हैं, इसलिए ' + p.name + ' का परिवार दिखाया गया है। पिता जी का फ़ॉर्म भरते समय मुखिया/पिता में यही नाम चुनें तो सब जुड़ जाएगा।'});
+}
+
+/* ---------------- global click delegation ---------------- */
+document.addEventListener('click', function(e){
+  var t;
+  if((t = e.target.closest('[data-person]'))){ openSheet({type:'person', id:t.dataset.person}); return; }
+  if((t = e.target.closest('[data-father]'))){ openFatherFamily(t.dataset.father); return; }
+  if((t = e.target.closest('[data-family]'))){ openSheet({type:'family', key:t.dataset.family, focus:t.dataset.focus || ''}); return; }
+  if((t = e.target.closest('[data-addfam]'))){ startFamilyAdd(t.dataset.addfam); return; }
+  if((t = e.target.closest('[data-regfrom]'))){
+    var rel = t.dataset.rrel;
+    if(rel === '__head'){ editing = null; backToForm(); resetForm(); var F = familyData(t.dataset.regfrom), b = F.anchor || {}; setForm({name:t.dataset.rname, headMode:'self', address:b.address||'', area:b.area||'', city:b.city||'', cityOther:b.cityOther||'', native:b.native||'', gotra:b.gotra||''}); closeSheet(); switchTab('form'); showStep(1); toast('मुखिया का फ़ॉर्म — नाम और पता पहले से भरा है'); }
+    else startFamilyAdd(t.dataset.regfrom, {name:t.dataset.rname, relation:rel});
+    return;
+  }
+  if((t = e.target.closest('[data-edit]'))){
+    var id = t.dataset.edit, p = M.byId[id]; if(!p) return;
+    var k = adminPin || LS.get('kvp.keys', {})[id];
+    if(k) beginEdit(p, k); else { var v = stack[stack.length-1]; v.askCode = true; renderSheet(); var c = $('#editCode'); if(c) c.focus(); }
+    return;
+  }
+  if((t = e.target.closest('[data-del]'))){ var v2 = stack[stack.length-1]; v2.confirmDel = true; renderSheet(); return; }
+  if((t = e.target.closest('[data-delno]'))){ stack[stack.length-1].confirmDel = false; renderSheet(); return; }
+  if((t = e.target.closest('[data-delyes]'))){
+    t.disabled = true;
+    API.remove(t.dataset.delyes, adminPin).then(function(r){ if(r && r.ok){ toast('एंट्री हटा दी गई'); closeSheet(); return refresh(); } toast((r && r.error) || 'हटाया नहीं जा सका'); t.disabled = false; })
+      .catch(function(err){ toast('हटाया नहीं जा सका: ' + (err && err.message || '')); t.disabled = false; });
+    return;
+  }
+  if((t = e.target.closest('[data-copy]'))){ copyText(t.dataset.copy, document.getElementById(t.dataset.copyel)); return; }
+  if((t = e.target.closest('[data-goto]'))){ switchTab(t.dataset.goto); return; }
+  if(e.target.id === 'retryLoad'){ dirState = 'loading'; renderDir(); refresh(); return; }
+  if(e.target.id === 'xlsBtn'){ exportExcel(e.target); return; }
+  if(e.target.id === 'adminOut'){ adminPin = ''; adminInfo = null; try{ sessionStorage.removeItem('kvp.admin'); }catch(err){} $('#adminPanel').hidden = true; $('#adminLogin').hidden = false; $('#adminPin').value = ''; refresh(); return; }
+});
+document.addEventListener('submit', function(e){
+  if(e.target.id === 'codeForm'){
+    e.preventDefault(); var id = e.target.dataset.id, code = $('#editCode').value.trim().toUpperCase();
+    if(!code){ $('#codeErr').textContent = 'कोड लिखें'; return; }
+    API.checkKey(id, code).then(function(r){
+      if(r && r.ok){ var keys = LS.get('kvp.keys', {}); keys[id] = code; LS.set('kvp.keys', keys); beginEdit(M.byId[id], code); }
+      else $('#codeErr').textContent = 'यह कोड इस एंट्री का नहीं है। दोबारा जाँचें।';
+    }).catch(function(err){ $('#codeErr').textContent = 'जाँच नहीं हो सकी: ' + (err && err.message || ''); });
+  }
+  if(e.target.id === 'viewPinForm'){
+    e.preventDefault(); var pin = $('#viewPin').value.trim(); if(!pin){ $('#viewPinErr').textContent = 'कोड लिखें'; return; }
+    LS.set('kvp.viewPin', pin); dirState = 'loading'; renderDir();
+    refresh().then(function(){ if(dirState === 'needPin'){ var er = $('#viewPinErr'); if(er) er.textContent = 'कोड गलत है। समिति से सही कोड लें।'; } });
+  }
+});
+
+/* ---------------- admin ---------------- */
+$('#adminForm').addEventListener('submit', function(e){
+  e.preventDefault(); var pin = $('#adminPin').value.trim();
+  if(!pin){ $('#adminErr').textContent = 'PIN लिखें'; return; }
+  $('#adminGo').disabled = true; $('#adminErr').textContent = '';
+  API.admin(pin).then(function(r){
+    if(!r || !r.ok){ $('#adminErr').textContent = (r && r.error) || 'PIN गलत है'; return; }
+    adminPin = pin; adminInfo = r; try{ sessionStorage.setItem('kvp.admin', pin); }catch(err){}
+    $('#adminLogin').hidden = true; $('#adminPanel').hidden = false;
+    return refresh();
+  }).catch(function(err){ $('#adminErr').textContent = 'जाँच नहीं हो सकी: ' + (err && err.message || ''); })
+  .then(function(){ $('#adminGo').disabled = false; });
+});
+function countBy(fn){ var c = {}; M.people.forEach(function(p){ var k = fn(p) || 'नहीं भरा'; c[k] = (c[k] || 0) + 1; }); return Object.keys(c).map(function(k){ return [k, c[k]]; }).sort(function(a,b){ return b[1]-a[1]; }); }
+function bars(list){ var max = list.reduce(function(m,x){ return Math.max(m, x[1]); }, 1); return '<div class="bars">' + list.map(function(x){ return '<div class="bar"><span>' + esc(x[0]) + '</span><span class="track"><span class="fill" style="width:' + Math.round(x[1]/max*100) + '%;display:block"></span></span><span class="v">' + x[1] + '</span></div>'; }).join('') + '</div>'; }
+function renderAdmin(){
+  var g = groups(), seekers = M.people.filter(function(p){ return p.occType === 'नौकरी की तलाश'; });
+  var sheetLink = adminInfo && adminInfo.sheetUrl ? '<a class="btn ghost" href="' + esc(adminInfo.sheetUrl) + '" target="_blank" rel="noopener">Google Sheet खोलें</a>' : '';
+  $('#adminPanel').innerHTML =
+    '<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center"><h2>एडमिन</h2><button type="button" class="btn sm ghost" id="adminOut">एडमिन से बाहर</button></div>' +
+    '<div class="tiles"><div class="tile"><b>' + M.people.length + '</b><span>कुल सदस्य</span></div><div class="tile"><b>' + Object.keys(g).length + '</b><span>परिवार</span></div>' +
+    '<div class="tile"><b>' + M.people.filter(function(p){ return p.headSelf; }).length + '</b><span>मुखिया रजिस्टर्ड</span></div><div class="tile"><b>' + seekers.length + '</b><span>नौकरी की तलाश में</span></div></div>' +
+    '<div class="card" style="display:grid;gap:12px"><p class="secttl" style="margin:0">Excel रिपोर्ट</p><p style="margin:0;color:var(--ink-2)">तीन शीट: सभी सदस्य (परिवार के हिसाब से क्रम में), परिवार सारांश, नौकरी की तलाश वाले युवा।</p>' +
+    '<div class="actions"><button type="button" class="btn primary" id="xlsBtn">Excel डाउनलोड करें</button>' + sheetLink + '</div></div>' +
+    '<div class="card" style="display:grid;gap:12px"><p class="secttl" style="margin:0">शहर के हिसाब से</p>' + bars(countBy(cityName)) + '</div>' +
+    '<div class="card" style="display:grid;gap:12px"><p class="secttl" style="margin:0">काम-काज</p>' + bars(countBy(function(p){ return p.occType; })) + '</div>' +
+    (seekers.length ? '<div class="card" style="display:grid;gap:12px"><p class="secttl" style="margin:0">नौकरी की तलाश में</p><div class="tbl"><table><thead><tr><th>नाम</th><th>आयु</th><th>कैसी नौकरी</th><th>क्षेत्र</th><th>मोबाइल</th></tr></thead><tbody>' +
+      seekers.map(function(p){ return '<tr><td><button type="button" class="linkbtn" data-person="' + esc(p.id) + '">' + esc(p.name) + '</button></td><td class="num">' + esc(ageOf(p)) + '</td><td>' + esc(p.designation) + '</td><td>' + esc(p.industry) + '</td><td class="num">' + esc(phone10(p.mobile)) + '</td></tr>'; }).join('') + '</tbody></table></div></div>' : '') +
+    '<p class="hint">किसी भी सदस्य के नाम पर क्लिक करके "जानकारी बदलें" या "हटाएँ" कर सकते हैं — एडमिन को कोड की ज़रूरत नहीं।</p>';
+}
+
+/* ---------------- Excel ---------------- */
+var xlsxP = null;
+function loadXLSX(){
+  if(window.XLSX) return Promise.resolve();
+  if(!xlsxP) xlsxP = new Promise(function(res, rej){ var s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js'; s.onload = res; s.onerror = function(){ xlsxP = null; rej(new Error('Excel बनाने वाली फ़ाइल लोड नहीं हुई — इंटरनेट जाँचें')); }; document.head.appendChild(s); });
+  return xlsxP;
+}
+function exportExcel(btn){
+  btn.disabled = true; var old = btn.textContent; btn.textContent = 'Excel बन रहा है…';
+  loadXLSX().then(function(){
+    var g = groups();
+    var fams = Object.keys(g).map(familyData).sort(function(a,b){ return a.headName.localeCompare(b.headName, 'hi'); });
+    var rows = [], famRows = [], n = 0;
+    fams.forEach(function(F, fi){
+      F.members.forEach(function(p){
+        n++;
+        rows.push({
+          'क्रम': n, 'परिवार क्र.': fi + 1, 'परिवार मुखिया': F.headName, 'मुखिया से रिश्ता': p === F.head ? 'स्वयं (मुखिया)' : (p.relation || ''),
+          'पूरा नाम': p.name, 'जन्म तिथि': fmtDate(p.dob), 'आयु': ageOf(p) ? +ageOf(p) : '', 'लिंग': p.gender || '', 'गोत्र': p.gotra || '', 'वैवाहिक स्थिति': p.marital || '',
+          'मोबाइल': phone10(p.mobile), 'WhatsApp': phone10(p.whatsapp), 'ईमेल': p.email || '',
+          'पिता का नाम': p.fatherName || '', 'माता का नाम': p.motherName || '', 'कुल परिवार सदस्य': p.totalMembers ? +p.totalMembers : '',
+          'परिवार सदस्य (नाम - रिश्ता)': (p.members || []).map(function(m){ return m.name + (m.relation ? ' - ' + m.relation : ''); }).join('; '),
+          'पता': p.address || '', 'क्षेत्र / इलाका': p.area || '', 'शहर': cityName(p), 'मूल निवास': p.native || '',
+          'काम-काज': p.occType || '', 'कंपनी / फर्म': p.company || '', 'पद / जॉब रोल': p.designation || '', 'उद्योग / कार्य क्षेत्र': p.industry || '', 'अन्य विवरण': p.occOther || '',
+          'दर्ज तिथि': p.createdAt || ''
+        });
+      });
+      var h = F.head || F.anchor || {};
+      famRows.push({'परिवार क्र.': fi + 1, 'परिवार मुखिया': F.headName, 'मुखिया मोबाइल': F.head ? phone10(F.head.mobile) : '', 'गोत्र': h.gotra || '', 'रजिस्टर्ड सदस्य': F.members.length, 'कुल सदस्य': F.total,
+        'सदस्यों के नाम': F.members.map(function(p){ return p.name; }).concat(F.listed.map(function(m){ return m.name + ' (रजिस्टर नहीं)'; })).join(', '),
+        'क्षेत्र': h.area || '', 'शहर': h.city ? cityName(h) : '', 'पता': h.address || '', 'मूल निवास': h.native || ''});
+    });
+    var seek = M.people.filter(function(p){ return p.occType === 'नौकरी की तलाश'; }).map(function(p){
+      return {'नाम': p.name, 'आयु': ageOf(p) ? +ageOf(p) : '', 'पिता का नाम': p.fatherName || '', 'मोबाइल': phone10(p.mobile), 'कैसी नौकरी चाहिए': p.designation || '', 'किस क्षेत्र में': p.industry || '', 'शहर': cityName(p)};
+    });
+    var wb = XLSX.utils.book_new();
+    function addSheet(data, name, widths){
+      var ws = data.length ? XLSX.utils.json_to_sheet(data) : XLSX.utils.aoa_to_sheet([['अभी कोई डेटा नहीं']]);
+      if(widths) ws['!cols'] = widths.map(function(w){ return {wch:w}; });
+      if(data.length) ws['!autofilter'] = {ref: ws['!ref']};
+      XLSX.utils.book_append_sheet(wb, ws, name);
+    }
+    addSheet(rows, 'सभी सदस्य', [6,8,24,16,26,12,6,8,12,14,13,13,24,24,22,10,40,36,20,14,22,14,24,22,22,20,16]);
+    addSheet(famRows, 'परिवार सारांश', [8,26,13,12,10,9,60,20,14,36,22]);
+    addSheet(seek, 'नौकरी की तलाश', [26,6,24,13,24,22,14]);
+    var buf = XLSX.write(wb, {bookType:'xlsx', type:'array'});
+    var d = new Date(), name = 'Khandal_Parivar_Register_' + d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2) + '.xlsx';
+    return saveFile(name, new Blob([buf], {type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}));
+  }).catch(function(err){ toast(err && err.message || 'Excel नहीं बन सका'); })
+  .then(function(){ btn.disabled = false; btn.textContent = old; });
+}
+function saveFile(name, blob){
+  var viaAnchor = function(){ var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 4000); toast('Excel फ़ाइल डाउनलोड हो रही है'); };
+  if(!IS_GAS && window.claude && typeof window.claude.use === 'function'){
+    return window.claude.use('downloads').then(function(dl){
+      if(!dl){ toast('इस व्यू में डाउनलोड उपलब्ध नहीं है'); return; }
+      return dl.save({filename:name, data:blob}).then(function(){ toast('Excel फ़ाइल सेव हो गई'); }, function(e){ if(e && e.code === 'declined') return; toast('डाउनलोड नहीं हो सका' + (e && e.message ? ': ' + e.message : '')); });
+    });
+  }
+  viaAnchor(); return Promise.resolve();
+}
+
+/* ---------------- install (phone app) ---------------- */
+var deferredPrompt = window.__bip || null, isStandalone = false;
+try{ isStandalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; }catch(e){}
+var ua = navigator.userAgent || '';
+var isIOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+var isAndroid = /android/i.test(ua);
+function showInstall(force){
+  if(!INSTALLABLE) return;
+  if(isStandalone){ if(force) toast('ऐप पहले से इंस्टॉल है'); return; }
+  if(!force && LS.get('kvp.installX', 0) > Date.now()) return;
+  var steps = $('#installSteps'), btn = $('#installBtn');
+  if(deferredPrompt){
+    $('#installText').textContent = 'एक बटन दबाएँ — होम स्क्रीन पर परशुराम जी वाला आइकन आ जाएगा।';
+    btn.hidden = false; steps.hidden = true;
+  } else if(isIOS){
+    $('#installText').textContent = 'iPhone में ये 2 कदम करें:';
+    btn.hidden = true; steps.hidden = false;
+    steps.innerHTML = '<li>Safari में नीचे <b>Share</b> बटन (चौकोर और ऊपर तीर) दबाएँ</li><li>नीचे स्क्रॉल करके <b>Add to Home Screen</b> चुनें, फिर <b>Add</b> दबाएँ</li>';
+  } else {
+    $('#installText').textContent = 'Chrome में ये 2 कदम करें:';
+    btn.hidden = true; steps.hidden = false;
+    steps.innerHTML = '<li>ऊपर दाएँ कोने में <b>⋮</b> (तीन बिंदु) दबाएँ</li><li><b>Install app</b> या <b>Add to Home screen</b> चुनें</li>';
+  }
+  $('#installWrap').hidden = false;
+}
+window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt = e; showInstall(false); });
+window.addEventListener('appinstalled', function(){ deferredPrompt = null; $('#installWrap').hidden = true; toast('ऐप इंस्टॉल हो गया — होम स्क्रीन पर आइकन देखें'); });
+$('#installBtn').addEventListener('click', function(){
+  if(!deferredPrompt){ showInstall(true); return; }
+  var dp = deferredPrompt; deferredPrompt = null;
+  dp.prompt();
+  dp.userChoice.then(function(c){ if(c && c.outcome === 'accepted') $('#installWrap').hidden = true; else showInstall(true); }, function(){});
+});
+$('#installX').addEventListener('click', function(){ $('#installWrap').hidden = true; LS.set('kvp.installX', Date.now() + 7*864e5); });
+$('#howInstall').addEventListener('click', function(){ showInstall(true); window.scrollTo({top:0, behavior: reduceMotion ? 'auto' : 'smooth'}); });
+if(INSTALLABLE && !isStandalone){
+  $('#howInstall').hidden = false;
+  if(deferredPrompt) showInstall(false);
+  else if(isIOS || isAndroid) setTimeout(function(){ showInstall(false); }, 2500);
+}
+
+/* ---------------- boot ---------------- */
+if(MODE === 'demo'){
+  $('#demoBar').hidden = false; $('#clearDemo').hidden = !API.hasDemo();
+  if(!IN_PREVIEW) $('#demoText').innerHTML = '<b>सेटअप अधूरा:</b> config.js में Apps Script का Web app लिंक नहीं डाला गया, इसलिए अभी यह डेमो मोड में है। यहाँ भरी जानकारी Google Sheet में नहीं जाएगी।';
+  $('#clearDemo').addEventListener('click', function(){ API.clearDemo(); $('#clearDemo').hidden = true; refresh(); toast('उदाहरण डेटा हटा दिया गया'); });
+}
+try{ var sp = sessionStorage.getItem('kvp.admin'); if(sp){ API.admin(sp).then(function(r){ if(r && r.ok){ adminPin = sp; adminInfo = r; $('#adminLogin').hidden = true; $('#adminPanel').hidden = false; refresh(); } }); } }catch(e){}
+var draft = LS.get('kvp.draft', null);
+resetForm();
+if(draft && draft.d && (draft.d.name || draft.d.mobile)){ setForm(draft.d); $('#draftNote').hidden = false; showStep(draft.step || 1, false); }
+else showStep(1, false);
+renderDir();
+refresh();
+})();
+</script>
+
+<script>
+if('serviceWorker' in navigator && window.isSecureContext){
+  addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+}
+</script>
+</body>
+</html>
